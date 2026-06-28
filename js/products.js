@@ -1412,16 +1412,25 @@ export function initProducts() {
     function revealProductsSection(andScroll = true) {
       if (!productsSection) return;
       
+      const isFirstReveal = !productsSection.classList.contains('is-revealed');
+      
       // Ensure the is-revealed class is present
-      if (!productsSection.classList.contains('is-revealed')) {
+      if (isFirstReveal) {
         productsSection.classList.add('is-revealed');
-      }
-      if (footerElement && !footerElement.classList.contains('is-revealed')) {
-        footerElement.classList.add('is-revealed');
+        if (footerElement) {
+          footerElement.classList.add('is-revealed');
+        }
       }
 
       if (andScroll) {
-        productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (isFirstReveal) {
+          // Defer scroll slightly to allow DOM layout to compute after display: none -> block
+          setTimeout(() => {
+            productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 80);
+        } else {
+          productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       }
 
       // Safe refresh call for lazy ScrollTriggers if loaded

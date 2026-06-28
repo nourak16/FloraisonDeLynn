@@ -1269,12 +1269,11 @@ body.is-mobile-forced .header-actions {
   padding: 40px 5% 100px 5%;
   background: linear-gradient(180deg, rgba(244, 212, 215, 0.12) 0%, var(--color-bg) 100%);
   position: relative;
-  opacity: 1;
+  display: none !important;
 }
 
 .products-section.is-revealed {
-  padding: 40px 5% 100px 5%;
-  opacity: 1;
+  display: block !important;
 }
 
 .section-intro {
@@ -2344,12 +2343,11 @@ body.is-mobile-forced .header-actions {
   padding: 85px 5% 50px 5%;
   position: relative;
   z-index: 99;
-  opacity: 1;
+  display: none !important;
 }
 
 .footer.is-revealed {
-  padding: 85px 5% 50px 5%;
-  opacity: 1;
+  display: block !important;
 }
 
 .footer-container {
