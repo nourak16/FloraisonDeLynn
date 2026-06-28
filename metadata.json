@@ -1,0 +1,8 @@
+{
+  "name": "FLORAISON DE LYNN",
+  "description": "Premium luxury showcase of bespoke everlasting silk floristry, customized butterfly domes, and glass resin captures assembled in Beirut.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

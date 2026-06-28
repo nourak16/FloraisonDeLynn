@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='none'%3E%3Cdefs%3E%3ClinearGradient id='pinkG' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2523fff0f1'/%3E%3Cstop offset='100%25' stop-color='%2523e28c94'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M50 50 C38 25, 12 15, 15 38 C17 56, 38 62, 50 68' fill='url(%2523pinkG)' stroke='%23ac7d58' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M50 54 C35 60, 22 72, 28 85 C33 94, 46 82, 50 68' fill='url(%2523pinkG)' stroke='%23ac7d58' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M50 50 C62 25, 88 15, 85 38 C83 56, 62 62, 50 68' fill='url(%2523pinkG)' stroke='%23ac7d58' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M50 54 C65 60, 78 72, 72 85 C67 94, 54 82, 50 68' fill='url(%2523pinkG)' stroke='%23ac7d58' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M50 32 C46 22, 38 18, 36 21' stroke='%23ac7d58' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M50 32 C54 22, 62 18, 64 21' stroke='%23ac7d58' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='36' cy='21' r='2' fill='%23ac7d58'/%3E%3Ccircle cx='64' cy='21' r='2' fill='%23ac7d58'/%3E%3Crect x='48.5' y='32' width='3' height='36' rx='1.5' fill='%23ac7d58' stroke='%23ac7d58' stroke-width='0.5'/%3E%3C/svg%3E">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FLORAISON DE LYNN - Bespoke Artisanal Gallery</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+  <!-- Dynamic Page Loader Preloader Splash -->
+  <div class="page-loader loader preloader loading-screen" id="loader">
+    <div class="loader-logo">
+      <svg class="butterfly-loader-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="loaderPinkWing" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#fff1f2" />
+            <stop offset="100%" stop-color="#fbc0c6" />
+          </linearGradient>
+          <linearGradient id="loaderGoldBody" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#fff0f3" />
+            <stop offset="50%" stop-color="#ac7d58" />
+            <stop offset="100%" stop-color="#734e34" />
+          </linearGradient>
+        </defs>
+        <path d="M50 50 C38 25, 12 15, 15 38 C17 56, 38 62, 50 68" fill="url(#loaderPinkWing)" stroke="#ac7d58" stroke-width="1.8" />
+        <path d="M50 54 C35 60, 22 72, 28 85 C33 94, 46 82, 50 68" fill="url(#loaderPinkWing)" stroke="#ac7d58" stroke-width="1.5" />
+        <path d="M50 50 C62 25, 88 15, 85 38 C83 56, 62 62, 50 68" fill="url(#loaderPinkWing)" stroke="#ac7d58" stroke-width="1.8" />
+        <path d="M50 54 C65 60, 78 72, 72 85 C67 94, 54 82, 50 68" fill="url(#loaderPinkWing)" stroke="#ac7d58" stroke-width="1.5" />
+        <path d="M50 32 C46 22, 38 18, 36 21" stroke="#ac7d58" stroke-width="1.2" />
+        <path d="M50 32 C54 22, 62 18, 64 21" stroke="#ac7d58" stroke-width="1.2" />
+        <circle cx="36" cy="21" r="1.5" fill="#ac7d58" />
+        <circle cx="64" cy="21" r="1.5" fill="#ac7d58" />
+        <rect x="48.5" y="32" width="3" height="36" rx="1.5" fill="url(#loaderGoldBody)" stroke="#ac7d58" stroke-width="0.5" />
+      </svg>
+    </div>
+    <div class="loader-line-wrap">
+      <div class="loader-line"></div>
+    </div>
+  </div>
+
+  <!-- Persistent Luxurious Header Navbar -->
+  <header class="header">
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Open Navigation Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="brand">
+      <div class="brand-logo">
+        <svg class="butterfly-nav-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="navPinkWing" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fff1f2" />
+              <stop offset="100%" stop-color="#fbc0c6" />
+            </linearGradient>
+            <linearGradient id="navGoldBody" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fff" />
+              <stop offset="50%" stop-color="#ac7d58" />
+              <stop offset="100%" stop-color="#734e34" />
+            </linearGradient>
+          </defs>
+          <path d="M50 50 C38 25, 12 15, 15 38 C17 56, 38 62, 50 68" fill="url(#navPinkWing)" stroke="#ac7d58" stroke-width="1.8" />
+          <path d="M50 54 C35 60, 22 72, 28 85 C33 94, 46 82, 50 68" fill="url(#navPinkWing)" stroke="#ac7d58" stroke-width="1.5" />
+          <path d="M50 50 C62 25, 88 15, 85 38 C83 56, 62 62, 50 68" fill="url(#navPinkWing)" stroke="#ac7d58" stroke-width="1.8" />
+          <path d="M50 54 C65 60, 78 72, 72 85 C67 94, 54 82, 50 68" fill="url(#navPinkWing)" stroke="#ac7d58" stroke-width="1.5" />
+          <path d="M50 32 C46 22, 38 18, 36 21" stroke="#ac7d58" stroke-width="1.2" />
+          <path d="M50 32 C54 22, 62 18, 64 21" stroke="#ac7d58" stroke-width="1.2" />
+          <circle cx="36" cy="21" r="1.5" fill="#ac7d58" />
+          <circle cx="64" cy="21" r="1.5" fill="#ac7d58" />
+          <rect x="48.5" y="32" width="3" height="36" rx="1.5" fill="url(#navGoldBody)" stroke="#ac7d58" stroke-width="0.5" />
+        </svg>
+      </div>
+      <span class="brand-text">FLORAISON DE LYNN</span>
+    </div>
+
+    <!-- Main Navigation Bar Links -->
+    <nav class="navbar">
+      <a href="#hero" class="nav-link active">Home</a>
+      <a href="#collection" class="nav-link">Collections</a>
+
+      <a href="#collection" class="nav-link" id="navShopBtn">Explore</a>
+    </nav>
+
+    <!-- Header actions (Cart Toggle & Ham Trigger) -->
+    <div class="header-actions">
+      <!-- Premium Header Search Input -->
+      <div class="header-search-wrapper" id="headerSearchWrapper">
+        <button class="header-search-toggle" id="headerSearchToggle" aria-label="Search Products">
+          <svg class="header-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+        <div class="header-search-container" id="headerSearchContainer">
+          <input type="text" id="headerSearchInput" placeholder="Search bouquets, crystal..." aria-label="Search products" autocomplete="off">
+          <button class="header-search-clear" id="headerSearchClear" aria-label="Clear Search" style="display: none;">&times;</button>
+        </div>
+      </div>
+
+      <button class="cart-toggle" id="cartToggle" aria-label="Open Cart">
+        <svg class="cart-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <span class="cart-toggle__badge" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+  <div class="search-backdrop" id="searchBackdrop"></div>
+
+  <!-- Collapsible Mobile Overlay Drawer -->
+  <div class="mobile-menu" id="mobileMenu">
+    <!-- Beautiful Translucent Backdrop Overlay (Dimmer) -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <!-- Left Sliding Drawer Panel -->
+    <div class="mobile-menu-panel">
+      <!-- Majestic Upper Brand Header -->
+      <div class="mobile-menu-header">
+        <!-- Two-line elegant serif branding matching reference image style -->
+        <div class="mobile-menu-brand-header">
+          <span class="mobile-menu-letter">FLORAISON DE</span>
+          <span class="mobile-menu-letter-sub">LYNN</span>
+        </div>
+        <p class="mobile-menu-tagline">Artisanal Floral Boutique</p>
+      </div>
+
+      <!-- Navigation Rows Content Blocks -->
+      <div class="mobile-menu-items">
+        <a href="#hero" class="mobile-menu-row">Home</a>
+        <a href="#collection" class="mobile-menu-row active">Collection</a>
+      </div>
+      
+      <!-- Warm Luxury Bottom Accent Section (Remaining Area) -->
+      <div class="mobile-menu-bottom">
+        <!-- Clean and elegant bottom workspace -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Horizontal Looping Parallax Hero Slider -->
+  <section class="hero" id="hero">
+    <!-- Blurred Hero Background Image Container (for ambient background lighting) -->
+    <div class="hero-bg-container">
+      <img class="hero-bg-image" id="heroBgBlur" src="/images/logo.webp?v=transparent_logo_v2" alt="" style="display: none;">
+    </div>
+
+    <!-- Soft Ambient Overlay for Subtle Luxury Contrast -->
+    <div class="hero-overlay"></div>
+
+    <!-- Main Content Container with Split-Pane Editorial Layout -->
+    <div class="hero-content-container">
+      
+      <!-- Left Editorial Text Column (Clean luxury layout, NOT blocking the logo) -->
+      <div class="hero-text-col">
+        <div class="hero-text-card">
+          <div class="hero-tag">Welcome to Floraison de Lynn</div>
+          <h1 class="hero-title">A floral maison where every bloom tells a story.</h1>
+          <p class="hero-subtitle">
+            From signature butterfly bouquets to luxurious floral gifts, every creation is thoughtfully designed to celebrate love, joy, and life’s most special moments.
+          </p>
+          <div class="hero-divider"></div>
+          <p class="hero-footer-text">
+            Every detail is carefully crafted to leave a lasting impression.
+            <br>
+            <span class="hero-highlight">Made with love, wrapped with elegance.</span>
+          </p>
+          <div class="hero-actions" style="margin-top: 28px;">
+            <button class="hero-explore-btn" id="heroExploreBtn">Explore Collection</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: The Gorgeous Pristine Sharp Brand Logo Display -->
+      <div class="hero-logo-col">
+        <div class="hero-logo-wrapper">
+          <img class="hero-brand-logo" id="heroBrandLogo" src="/images/logo.webp?v=transparent_logo_v2" alt="Floraison de Lynn Brand Logo" referrerPolicy="no-referrer" style="display: none;">
+          <!-- Fallback when logo is loading or not yet uploaded -->
+          <div class="hero-logo-fallback" id="heroBrandLogoFallback">
+            <svg class="hero-fallback-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="heroPinkWing" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#fff1f2" />
+                  <stop offset="100%" stop-color="#fbc0c6" />
+                </linearGradient>
+                <linearGradient id="heroGoldBody" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#fff" />
+                  <stop offset="50%" stop-color="#ac7d58" />
+                  <stop offset="100%" stop-color="#734e34" />
+                </linearGradient>
+              </defs>
+              <path d="M50 50 C38 25, 12 15, 15 38 C17 56, 38 62, 50 68" fill="url(#heroPinkWing)" stroke="#ac7d58" stroke-width="1.8" />
+              <path d="M50 54 C35 60, 22 72, 28 85 C33 94, 46 82, 50 68" fill="url(#heroPinkWing)" stroke="#ac7d58" stroke-width="1.5" />
+              <path d="M50 50 C62 25, 88 15, 85 38 C83 56, 62 62, 50 68" fill="url(#heroPinkWing)" stroke="#ac7d58" stroke-width="1.8" />
+              <path d="M50 54 C65 60, 78 72, 72 85 C67 94, 54 82, 50 68" fill="url(#heroPinkWing)" stroke="#ac7d58" stroke-width="1.5" />
+              <path d="M50 32 C46 22, 38 18, 36 21" stroke="#ac7d58" stroke-width="1.2" />
+              <path d="M50 32 C54 22, 62 18, 64 21" stroke="#ac7d58" stroke-width="1.2" />
+              <circle cx="36" cy="21" r="1.5" fill="#ac7d58" />
+              <circle cx="64" cy="21" r="1.5" fill="#ac7d58" />
+              <rect x="48.5" y="32" width="3" height="36" rx="1.5" fill="url(#heroGoldBody)" stroke="#ac7d58" stroke-width="0.5" />
+            </svg>
+            <div class="hero-fallback-text font-display">FLORAISON DE LYNN</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Collections Showcase Grid Section -->
+  <section class="products-section" id="collection">
+
+    <!-- Product Category Rail Filters -->
+    <div class="products-filters" id="productsFilters">
+      <!-- Injected Dynamically by JS -->
+    </div>
+
+    <!-- Product Display CSS Grid -->
+    <div class="products-grid" id="productsGrid">
+      <!-- Injected Dynamically by JS -->
+    </div>
+  </section>
+
+  <!-- Luxurious Professional Footer -->
+  <footer class="footer" id="footer">
+    <div class="footer-container">
+      <!-- Collections Column -->
+      <div class="footer-links-col">
+        <h4 class="footer-title">Collections</h4>
+        <ul class="footer-links-list">
+          <li><a href="#collection" class="footer-link-item footer-filter-link" id="footerFilterBouquets" data-filter="bouquets">Bouquets</a></li>
+          <li><a href="#collection" class="footer-link-item footer-filter-link" id="footerFilterGiftBoxes" data-filter="gift boxes">Gift Boxes</a></li>
+          <li><a href="#collection" class="footer-link-item footer-filter-link" id="footerFilterPersonalized" data-filter="personalized gifts">Personalized Gifts</a></li>
+        </ul>
+      </div>
+
+      <!-- Quick Navigation Column -->
+      <div class="footer-links-col">
+        <h4 class="footer-title">Explore</h4>
+        <ul class="footer-links-list">
+          <li><a href="#hero" class="footer-link-item">Home</a></li>
+          <li><a href="#collection" class="footer-link-item">Our Collections</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info Column -->
+      <div class="footer-links-col">
+        <h4 class="footer-title">Contact Us</h4>
+        <ul class="footer-links-list">
+          <li>
+            <a href="https://wa.me/96181769307" class="footer-link-item" target="_blank" rel="noopener noreferrer">
+              <svg class="footer-icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-right: 6px;">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+              +961 81 769 307
+            </a>
+          </li>
+          <li>
+            <span class="footer-link-item-static">
+              <svg class="footer-icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-right: 6px;">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              Beirut, Lebanon
+            </span>
+          </li>
+        </ul>
+        
+        <!-- Social Media Icon Bar -->
+        <div class="footer-socials" style="margin-top: 20px; display: flex; gap: 12px; align-items: center;">
+          <a href="https://www.instagram.com/floraisondelynn?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Instagram" id="btnInstagram" style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: block;">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+          <a href="https://wa.me/96181769307" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="WhatsApp" id="btnWhatsApp" style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: block;">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Legal & Attribution Footer Bar -->
+    <div class="footer-bottom">
+      <div class="footer-bottom-content">
+        <p class="copyright-text">
+          &copy; 2026 FLORAISON DE LYNN. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Detailed Configuration Modal with Customizer -->
+  <div class="product-modal" id="productModal">
+    <div class="product-modal__overlay" id="modalOverlay"></div>
+    <div class="product-modal__container">
+      <div class="product-modal__drag-handle" id="modalDragHandle"></div>
+      
+      <button class="product-modal__close" id="modalClose" aria-label="Close modal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block;">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      
+      <!-- Split column layouts: Product media -->
+      <div class="product-modal__gallery" id="galleryContainer" style="overflow: hidden; position: relative; background: var(--color-bg); min-height: 350px; display: flex; align-items: center; justify-content: center; cursor: grab;">
+        <div class="gallery-zoom-wrapper" id="galleryZoomWrapper" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; transition: transform 0.15s ease-out; transform-origin: center center; user-select: none;">
+          <img id="modalImage" src="" alt="Selected product" style="pointer-events: none; max-width: 100%; max-height: 100%; object-fit: contain; padding: 16px;">
+        </div>
+        
+        <!-- Floating Fullscreen Button - Bottom Right Minimal -->
+        <button id="btnFullscreen" title="Fullscreen High-Res Preview" aria-label="Fullscreen Preview" style="display: none !important; position: absolute; bottom: 16px; right: 16px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid var(--color-border); width: 44px; height: 44px; border-radius: 50%; align-items: center; justify-content: center; cursor: pointer; color: var(--color-text); transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); z-index: 30; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: block;">
+            <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+          </svg>
+        </button>
+        
+        <!-- Helpful interactive tip -->
+        <div class="gallery-tip" id="galleryTip" style="position: absolute; top: 16px; left: 16px; background: rgba(0, 0, 0, 0.6); color: #fff; font-family: var(--font-sans); font-size: 10px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 25; pointer-events: none;">Drag to explore</div>
+      </div>
+
+      <!-- Split column layouts: Customizations config -->
+      <div class="product-modal__details">
+        <span class="product-modal__category" id="modalCategory">Category</span>
+        <h3 class="product-modal__title" id="modalTitle">Product Name</h3>
+        <div class="product-modal__price" id="modalPrice">$0.00</div>
+        <p class="product-modal__description" id="modalDescription">Detailed product explanation.</p>
+
+        <!-- Arrangement Customizer -->
+        <div class="product-modal__configurator">
+          <!-- Available Colors Selector -->
+          <div class="config-field" id="colorsConfigField">
+            <label class="config-label" style="font-size: 0.95rem; font-weight: 600; color: var(--color-primary); margin-bottom: 10px; display: block; letter-spacing: 0.5px;">Available colors</label>
+            <div class="config-color-options" id="modalProductColors">
+              <!-- Dynamically populated per item -->
+            </div>
+          </div>
+
+          <!-- Second Color Selector (Specifically for Bloomelle) -->
+          <div class="config-field" id="secondColorsConfigField" style="display: none;">
+            <label class="config-label" style="font-size: 0.95rem; font-weight: 600; color: var(--color-primary); margin-bottom: 10px; display: block; letter-spacing: 0.5px;">Second Flower Color (Optional)</label>
+            <div class="config-color-options" id="modalSecondProductColors">
+              <!-- Dynamically populated per item -->
+            </div>
+          </div>
+
+          <!-- Available Sizes Selector -->
+          <div class="config-field" id="sizesConfigField" style="display: none;">
+            <label class="config-label" style="font-size: 0.95rem; font-weight: 600; color: var(--color-primary); margin-bottom: 10px; display: block; letter-spacing: 0.5px;">Available sizes</label>
+            <div class="config-size-options" id="modalProductSizes">
+              <!-- Dynamically populated per item -->
+            </div>
+          </div>
+
+          <!-- Bag Packaging Option (Optional) -->
+          <div class="config-field" id="bagOptionConfigField" style="display: none;">
+            <label class="config-label" style="font-size: 0.95rem; font-weight: 600; color: var(--color-primary); margin-bottom: 10px; display: block; letter-spacing: 0.5px;">Packaging Option</label>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <label class="bag-option-lbl" style="display: flex; align-items: center; gap: 12px; border: 1.5px solid var(--color-border); padding: 12px 14px; border-radius: 12px; cursor: pointer; transition: all 0.2s ease; background: var(--color-surface); font-size: 13.5px; font-weight: 500; user-select: none;">
+                <input type="checkbox" id="modalBagCheckbox" style="accent-color: var(--color-primary); width: 18px; height: 18px; cursor: pointer;">
+                <span style="color: var(--color-text);">Package in a FLORAISON DE LYNN gift bag (Optional)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Flower Quantity Selector (For items like Bloomelle) -->
+          <div class="config-field" id="flowerQtyConfigField" style="display: none;">
+            <label class="config-label" style="font-size: 0.95rem; font-weight: 600; color: var(--color-primary); margin-bottom: 10px; display: block; letter-spacing: 0.5px;">Quantity of Flowers</label>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <input type="number" id="modalFlowerQty" class="config-input" value="1" min="1" step="1" style="width: 100px; text-align: center;">
+            </div>
+          </div>
+
+          <!-- Custom Note Field (For items where clients customize via notes, e.g. Bloom & Bliss) -->
+          <div class="config-field" id="customNoteConfigField" style="display: none;">
+            <label class="config-label" id="customNoteLabel" style="font-size: 0.95rem; font-weight: 600; color: var(--color-primary); margin-bottom: 10px; display: block; letter-spacing: 0.5px;">Custom Note</label>
+            <input type="text" id="modalCustomNote" class="config-input" placeholder="e.g. Red and Gold color theme">
+          </div>
+
+          <!-- Config summary review box -->
+          <div class="config-review" id="configReviewBox">
+            Active Setup: Default
+          </div>
+        </div>
+
+        <div class="product-modal__actions" style="display: flex; gap: 12px; margin-top: 24px; align-items: stretch; width: 100%;">
+          <button class="products__btn products__btn--secondary" id="modalShopBtn" style="flex: 1; margin: 0; height: auto; text-align: center;">Close Details</button>
+          <a class="products__btn products__btn--whatsapp" id="modalWhatsappBtn" target="_blank" rel="noopener noreferrer" style="flex: 1.3; text-decoration: none; text-align: center; display: inline-flex; align-items: center; justify-content: center; margin: 0; min-height: 44px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: middle; margin-right: 6px;">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.057 5.385 5.4 0 12.003 0c3.2 0 6.21 1.246 8.471 3.513 2.261 2.268 3.504 5.284 3.501 8.49-.005 6.617-5.347 12.003-11.954 12.003-1.997 0-3.963-.5-5.717-1.448L0 24zm6.59-2.031c1.6.941 3.181 1.432 4.793 1.433 5.485 0 9.948-4.463 9.952-9.951.002-2.658-1.025-5.156-2.894-7.029a9.9 9.9 0 0 0-7.042-2.889c-5.488 0-9.951 4.463-9.955 9.95-.001 1.83.493 3.618 1.435 5.174l-1.018 3.716 3.824-.997zm11.362-7.243c-.315-.157-1.86-.918-2.144-1.021-.284-.105-.49-.157-.696.157-.206.315-.794 1.021-.97 1.225-.175.206-.351.227-.666.07-1.157-.503-1.932-1.002-2.695-2.28-.196-.33.196-.307.56-.99.117-.225.059-.42-.03-.577-.088-.157-.696-1.68-.954-2.298-.25-.603-.505-.52-.696-.53-.18-.01-.39-.01-.597-.01-.206 0-.54.077-.824.386-.284.31-1.082 1.057-1.082 2.578 0 1.52 1.103 2.99 1.258 3.2 1.766 2.378 3.238 3.328 5.626 4.1.86.28 1.444.331 1.98.243.593-.098 1.86-.761 2.124-1.458.263-.696.263-1.294.186-1.418-.078-.124-.284-.206-.598-.363z"/>
+            </svg>
+            Inquire on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Immersive Fullscreen Lightbox Modal -->
+  <div class="lightbox" id="lightboxModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 2000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; display: flex; align-items: center; justify-content: center; overflow: hidden; font-family: var(--font-sans);">
+    <div class="lightbox__overlay" id="lightboxOverlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 12, 11, 0.95); backdrop-filter: blur(20px);"></div>
+    <div class="lightbox__container" style="position: relative; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10;">
+      
+      <!-- Close button -->
+      <button class="lightbox__close" id="lightboxClose" aria-label="Close Lightbox" style="position: absolute; top: 24px; right: 24px; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.2); background: rgba(255, 255, 255, 0.1); color: #fff; font-size: 24px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; z-index: 30;">&times;</button>
+      
+      <!-- Lightbox Main Content (Zoom & Pan image) -->
+      <div class="lightbox__content" id="lightboxContent" style="flex: 1; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: grab;">
+        <div class="lightbox__img-wrapper" id="lightboxZoomWrapper" style="display: flex; align-items: center; justify-content: center; transition: transform 0.15s ease-out; transform-origin: center center; user-select: none;">
+          <img id="lightboxImage" src="" alt="Zoomed view" style="max-width: 90vw; max-height: 80vh; object-fit: contain; pointer-events: none; border-radius: 8px;">
+        </div>
+      </div>
+
+      <!-- Helper text tip -->
+      <div class="lightbox__tip" id="lightboxTip" style="position: absolute; bottom: 40px; color: rgba(255, 255, 255, 0.6); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; pointer-events: none; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); animation: pulse 2s infinite ease-in-out;">Drag to pan & explore details</div>
+    </div>
+  </div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer__header">
+      <h3 class="cart-drawer__title">Shopping cart</h3>
+      <button class="cart-drawer__close" id="cartClose" aria-label="Close Cart">CLOSE &times;</button>
+    </div>
+    <div class="cart-drawer__content" id="cartItemsContainer">
+      <!-- Populated item rows -->
+    </div>
+  </div>
+  <div class="cart-drawer__overlay" id="cartOverlay"></div>
+
+  <!-- Delivery Details Modal -->
+  <div class="product-modal" id="deliveryModal">
+    <div class="product-modal__overlay" id="deliveryOverlay"></div>
+    <div class="product-modal__container" style="max-width: 500px; flex-direction: column;">
+      <button class="product-modal__close" id="deliveryClose" aria-label="Close Modal">&times;</button>
+      <div class="product-modal__details" style="width: 100%; padding: 30px;">
+        <h3 class="product-modal__title" style="font-size: 1.5rem; text-align: center; margin-bottom: 20px;">Delivery Details</h3>
+        
+        <form id="deliveryForm" style="display: flex; flex-direction: column; gap: 15px;">
+          <div>
+            <label class="config-label" style="font-size: 0.85rem; font-weight: 600; color: var(--color-primary); margin-bottom: 6px; display: block; letter-spacing: 0.5px;">FULL NAME</label>
+            <input type="text" id="deliveryName" class="config-input" placeholder="e.g. John Doe" required>
+          </div>
+          
+          <div>
+            <label class="config-label" style="font-size: 0.85rem; font-weight: 600; color: var(--color-primary); margin-bottom: 6px; display: block; letter-spacing: 0.5px;">PHONE NUMBER</label>
+            <input type="tel" id="deliveryPhone" class="config-input" placeholder="e.g. 76 123 456" required>
+          </div>
+          
+          <div>
+            <label class="config-label" style="font-size: 0.85rem; font-weight: 600; color: var(--color-primary); margin-bottom: 6px; display: block; letter-spacing: 0.5px;">LOCATION / ADDRESS IN LEBANON</label>
+            <input type="text" id="deliveryLocation" class="config-input" placeholder="e.g. Beirut, Hamra Street, 3rd Floor" required>
+          </div>
+
+          <div>
+            <label class="config-label" style="font-size: 0.85rem; font-weight: 600; color: var(--color-primary); margin-top: 4px; margin-bottom: 8px; display: block; letter-spacing: 0.5px;">PAYMENT METHOD</label>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <label class="payment-option-label" style="display: flex; align-items: flex-start; gap: 12px; border: 1.5px solid var(--color-border); padding: 12px 16px; border-radius: 12px; cursor: pointer; transition: all 0.22s ease; background: #faf9f6;">
+                <input type="radio" name="paymentMethod" value="Cash on Delivery" checked style="accent-color: #7c6e64; cursor: pointer; margin-top: 4px;">
+                <div style="display: flex; flex-direction: column; gap: 2px;">
+                  <span style="font-size: 13.5px; font-weight: 600; color: var(--color-text);">Cash on Delivery</span>
+                  <span style="font-size: 11.5px; color: var(--color-text-muted); line-height: 1.3;">Pay cash when your order is delivered to your address.</span>
+                </div>
+              </label>
+              
+              <label class="payment-option-label" style="display: flex; align-items: flex-start; gap: 12px; border: 1.5px solid var(--color-border); padding: 12px 16px; border-radius: 12px; cursor: pointer; transition: all 0.22s ease; background: #faf9f6;">
+                <input type="radio" name="paymentMethod" value="Cash via Whish Money (71721108)" style="accent-color: #7c6e64; cursor: pointer; margin-top: 4px;">
+                <div style="display: flex; flex-direction: column; gap: 2px;">
+                  <span style="font-size: 13.5px; font-weight: 600; color: var(--color-text);">Cash via Whish Money</span>
+                  <span style="font-size: 11.5px; color: var(--color-text-muted); line-height: 1.3;">Send payment to Whish number *71721108* before delivery.</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Checkout Summary Breakdown -->
+          <div style="background: #faf9f6; padding: 16px; border-radius: 12px; border: 1px solid var(--color-border); margin-top: 15px;">
+            <div style="display: flex; justify-content: space-between; font-size: 13.5px; color: var(--color-text-muted); margin-bottom: 8px;">
+              <span>Subtotal:</span>
+              <span id="checkoutSubtotal">$0.00</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 13.5px; color: var(--color-text-muted); margin-bottom: 8px;">
+              <span>Delivery Fee (All Lebanon):</span>
+              <span>$4.00</span>
+            </div>
+            <hr style="border: none; border-top: 1px dashed var(--color-border); margin: 10px 0;">
+            <div style="display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; color: var(--color-text);">
+              <span>Total Payment:</span>
+              <span id="checkoutTotal">$4.00</span>
+            </div>
+          </div>
+
+          <button type="submit" class="products__btn products__btn--primary" id="deliverySubmitBtn" style="margin-top: 15px; padding: 14px; border-radius: 100px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Confirm Order via WhatsApp</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Alert Toaster -->
+  <div class="notification-container" id="notificationContainer"></div>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
