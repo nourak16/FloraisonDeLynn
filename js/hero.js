@@ -4,26 +4,25 @@ export function initHero() {
   const fallback = document.getElementById('heroBrandLogoFallback');
 
   if (logoImg && fallback) {
+    const path = window.location.pathname;
+    const lastSlash = path.lastIndexOf('/');
+    const baseDir = lastSlash !== -1 ? path.substring(0, lastSlash + 1) : '/';
+
     // Elegant system to automatically detect and render their logo image whichever extension they upload
     const formats = [
-      '/images/logo.webp?v=transparent_logo_v2',
-      'images/logo.webp?v=transparent_logo_v2',
+      baseDir + 'images/logo.webp?v=transparent_logo_v2',
       './images/logo.webp?v=transparent_logo_v2',
-      '/images/logo.png?v=transparent_logo_v2',
-      'images/logo.png?v=transparent_logo_v2',
+      baseDir + 'images/logo.png?v=transparent_logo_v2',
       './images/logo.png?v=transparent_logo_v2',
-      'logo.png',
-      'logo.jpg',
-      'logo.jpeg',
-      'logo.svg',
-      'logo.webp',
-      'logo.gif',
-      '/logo.png',
-      '/logo.jpg',
-      '/logo.jpeg',
-      '/logo.svg',
-      '/logo.webp',
-      '/logo.gif'
+      baseDir + 'logo.webp',
+      baseDir + 'logo.png',
+      baseDir + 'logo.jpg',
+      baseDir + 'logo.jpeg',
+      baseDir + 'logo.svg',
+      baseDir + 'logo.gif',
+      './images/logo.jpg',
+      './images/logo.png',
+      './images/logo.gif'
     ];
     let formatIndex = 0;
 

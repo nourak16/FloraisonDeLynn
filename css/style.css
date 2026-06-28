@@ -3040,3 +3040,40 @@ body.is-mobile-forced .header-actions {
   }
 }
 
+/* --- High-Performance Image Lazy Loading Transitions --- */
+.products__card-image.lazy-image {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.products__card-image.lazy-image-loaded {
+  opacity: 1 !important;
+}
+
+/* Elegant shimmering effect for the parent wrapper when loading */
+.products__card-image-wrapper.is-loading {
+  position: relative;
+}
+
+.products__card-image-wrapper.is-loading::after {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: calc(100% - 24px);
+  height: calc(100% - 24px);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: translateX(-100%);
+  animation: shimmer-effect 1.6s infinite ease-in-out;
+  border-radius: 14px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@keyframes shimmer-effect {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+

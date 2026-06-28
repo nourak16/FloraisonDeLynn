@@ -143,9 +143,9 @@ export function initProducts() {
 
       return `
         <div class="products__card" data-category="${p.category}" data-id="${i}" id="product-card-${i}">
-          <div class="products__card-image-wrapper">
+          <div class="products__card-image-wrapper is-loading">
             ${isBestSellerBadge}
-            <img src="${p.image}?v=1.0.1" alt="${p.name}" class="products__card-image" loading="lazy" decoding="async" onerror="window.handleProductImageError(this, '${p.image}')">
+            <img data-src="${p.image}?v=1.0.1" src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org/2000%2Fsvg%27%20viewBox%3D%270%200%201%201%27%2F%3E" alt="${p.name}" class="products__card-image lazy-image" decoding="async" onerror="window.handleProductImageError(this, '${p.image}')">
           </div>
           <div class="products__card-info">
             <span class="products__card-category">${p.category}</span>
@@ -160,6 +160,61 @@ export function initProducts() {
 
     setupCardAnimations();
     setupCardListeners();
+    setupLazyLoading();
+  }
+
+  function setupLazyLoading() {
+    const lazyImages = document.querySelectorAll('.lazy-image');
+    
+    if ('IntersectionObserver' in window) {
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const image = entry.target;
+            if (image.dataset.src) {
+              const wrapper = image.closest('.products__card-image-wrapper');
+              
+              // Define a memory Image to pre-load and guarantee a seamless transition
+              const tempImg = new Image();
+              tempImg.onload = () => {
+                image.src = image.dataset.src;
+                image.classList.add('lazy-image-loaded');
+                if (wrapper) {
+                  wrapper.classList.remove('is-loading');
+                }
+              };
+              tempImg.onerror = () => {
+                // If pre-loading fails, assign the source to let handleProductImageError trigger
+                image.src = image.dataset.src;
+                image.classList.add('lazy-image-loaded');
+                if (wrapper) {
+                  wrapper.classList.remove('is-loading');
+                }
+              };
+              tempImg.src = image.dataset.src;
+            }
+            observer.unobserve(image);
+          }
+        });
+      }, {
+        rootMargin: '120px 0px 240px 0px', // Preload ahead of viewport entry for visual fluidness
+        threshold: 0.01
+      });
+
+      lazyImages.forEach(image => {
+        imageObserver.observe(image);
+      });
+    } else {
+      // Robust fallback for older environments
+      lazyImages.forEach(image => {
+        if (image.dataset.src) {
+          image.src = image.dataset.src;
+          image.classList.add('lazy-image-loaded');
+          const wrapper = image.closest('.products__card-image-wrapper');
+          if (wrapper) wrapper.classList.remove('is-loading');
+        }
+      });
+    }
   }
 
   // --- Cart and Addition ---
