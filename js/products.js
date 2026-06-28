@@ -145,7 +145,7 @@ export function initProducts() {
         <div class="products__card" data-category="${p.category}" data-id="${i}" id="product-card-${i}">
           <div class="products__card-image-wrapper">
             ${isBestSellerBadge}
-            <img src="${p.image}" alt="${p.name}" class="products__card-image" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='./images/logo.webp'; this.style.opacity='0.45'; this.style.objectFit='contain'; this.style.padding='40px';">
+            <img src="${p.image}" alt="${p.name}" class="products__card-image" loading="lazy" decoding="async" onerror="window.handleProductImageError(this, '${p.image}')">
           </div>
           <div class="products__card-info">
             <span class="products__card-category">${p.category}</span>
@@ -226,7 +226,7 @@ export function initProducts() {
         return `
           <div class="cart-item" id="cart-item-${listIndex}">
             <div class="cart-item__image">
-              <img src="${item.image}" alt="${item.name}">
+              <img src="${item.image}" alt="${item.name}" onerror="window.handleProductImageError(this, '${item.image}')">
             </div>
             <div class="cart-item__info">
               <div class="cart-item__header">

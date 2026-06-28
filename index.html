@@ -50,6 +50,70 @@
 
   <!-- Inline Fail-Safe Page Loader Fallback: Forces loading screen dismissal after 5 seconds -->
   <script>
+    window.handleProductImageError = function(img, originalSrc) {
+      if (!img) return;
+      if (!img.dataset.errorCount) {
+        img.dataset.errorCount = "1";
+      } else {
+        img.dataset.errorCount = (parseInt(img.dataset.errorCount) || 0) + 1;
+      }
+      
+      var count = parseInt(img.dataset.errorCount) || 0;
+      
+      var fileName = "";
+      if (originalSrc) {
+        var parts = originalSrc.split('/');
+        if (parts.length > 0) {
+          fileName = parts[parts.length - 1];
+          var qIdx = fileName.indexOf('?');
+          if (qIdx !== -1) {
+            fileName = fileName.substring(0, qIdx);
+          }
+        }
+      }
+      
+      if (!fileName || fileName === 'undefined') return;
+
+      var path = window.location.pathname;
+      var lastSlash = path.lastIndexOf('/');
+      var baseDir = lastSlash !== -1 ? path.substring(0, lastSlash + 1) : '/';
+      
+      if (count === 1) {
+        // Try public/images/ filename
+        img.src = baseDir + "public/images/" + fileName;
+        return;
+      } else if (count === 2) {
+        // Try images/ filename
+        img.src = baseDir + "images/" + fileName;
+        return;
+      } else if (count === 3) {
+        // Try relative ./images/ filename
+        img.src = "./images/" + fileName;
+        return;
+      } else if (count === 4) {
+        // Try relative ./public/images/ filename
+        img.src = "./public/images/" + fileName;
+        return;
+      }
+      
+      // Ultimate fallback to logo or hidden
+      img.onerror = null;
+      img.src = './images/logo.webp';
+      var logoErrCount = 0;
+      img.onerror = function() {
+        if (logoErrCount === 0) {
+          logoErrCount++;
+          img.src = './public/images/logo.webp';
+        } else {
+          img.onerror = null;
+          img.style.display = 'none';
+        }
+      };
+      img.style.opacity = '0.45';
+      img.style.objectFit = 'contain';
+      img.style.padding = '40px';
+    };
+
     (function() {
       setTimeout(function() {
         var loader = document.getElementById('loader');
@@ -337,7 +401,7 @@
       <!-- Split column layouts: Product media -->
       <div class="product-modal__gallery" id="galleryContainer" style="overflow: hidden; position: relative; background: var(--color-bg); min-height: 350px; display: flex; align-items: center; justify-content: center; cursor: grab;">
         <div class="gallery-zoom-wrapper" id="galleryZoomWrapper" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; transition: transform 0.15s ease-out; transform-origin: center center; user-select: none;">
-          <img id="modalImage" src="" alt="Selected product" style="pointer-events: none; max-width: 100%; max-height: 100%; object-fit: contain; padding: 16px;">
+          <img id="modalImage" src="" alt="Selected product" style="pointer-events: none; max-width: 100%; max-height: 100%; object-fit: contain; padding: 16px;" onerror="window.handleProductImageError(this, this.src)">
         </div>
         
         <!-- Floating Fullscreen Button - Bottom Right Minimal -->
