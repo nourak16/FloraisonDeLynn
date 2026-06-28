@@ -1266,20 +1266,15 @@ body.is-mobile-forced .header-actions {
 
 /* ==================== PRODUCTS SECTION & GRID ==================== */
 .products-section {
-  padding: 0 5%;
+  padding: 40px 5% 100px 5%;
   background: linear-gradient(180deg, rgba(244, 212, 215, 0.12) 0%, var(--color-bg) 100%);
   position: relative;
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  transition: max-height 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease, padding 1s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 1;
 }
 
 .products-section.is-revealed {
   padding: 40px 5% 100px 5%;
-  max-height: 8000px;
   opacity: 1;
-  overflow: visible;
 }
 
 .section-intro {
@@ -2346,20 +2341,15 @@ body.is-mobile-forced .header-actions {
 .footer {
   background-color: var(--color-surface);
   border-top: 1px solid var(--color-border);
-  padding: 0 5%;
+  padding: 85px 5% 50px 5%;
   position: relative;
   z-index: 99;
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  transition: max-height 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease, padding 1s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 1;
 }
 
 .footer.is-revealed {
   padding: 85px 5% 50px 5%;
-  max-height: 2000px;
   opacity: 1;
-  overflow: visible;
 }
 
 .footer-container {
@@ -2502,17 +2492,12 @@ body.is-mobile-forced .header-actions {
     letter-spacing: 0.03em !important;
   }
   .products-section {
-    padding: 0 16px !important;
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: max-height 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease, padding 1s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 24px 16px 60px 16px !important;
+    opacity: 1 !important;
   }
   .products-section.is-revealed {
     padding: 24px 16px 60px 16px !important;
-    max-height: 8000px;
-    opacity: 1;
-    overflow: visible;
+    opacity: 1 !important;
   }
   .products-filters {
     justify-content: flex-start !important;
@@ -2999,7 +2984,7 @@ body.is-mobile-forced .header-actions {
 /* Elegant responsive layout optimization for mobile screens (max-width: 600px) */
 @media (max-width: 600px) {
   .footer {
-    padding: 0 24px !important;
+    padding: 60px 24px 40px 24px !important;
   }
   .footer.is-revealed {
     padding: 60px 24px 40px 24px !important;

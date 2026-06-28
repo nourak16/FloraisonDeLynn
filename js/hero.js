@@ -27,26 +27,7 @@ export function initHero() {
     ];
     let formatIndex = 0;
 
-    const tryNextLogo = () => {
-      if (formatIndex < formats.length) {
-        const nextSrc = formats[formatIndex];
-        formatIndex++;
-        logoImg.src = nextSrc;
-        if (bgBlurImg) {
-          bgBlurImg.src = nextSrc;
-        }
-      } else {
-        // If no custom logo has been uploaded to the workspace yet, show the high-contrast golden butterfly fallback
-        logoImg.style.display = 'none';
-        if (bgBlurImg) {
-          bgBlurImg.style.display = 'none';
-        }
-        fallback.style.display = 'flex';
-      }
-    };
-
-    logoImg.addEventListener('error', tryNextLogo);
-    logoImg.addEventListener('load', () => {
+    const handleLoadSuccess = () => {
       const srcLower = (logoImg.src || '').toLowerCase();
       const isOriginalNativelyTransparent = srcLower.includes('logo.webp') || srcLower.includes('.webp') || srcLower.includes('.png') || srcLower.includes('.svg');
 
@@ -71,10 +52,41 @@ export function initHero() {
         bgBlurImg.style.display = 'block';
       }
       fallback.style.display = 'none';
-    });
+    };
 
-    // Fire detection
-    tryNextLogo();
+    const tryNextLogo = () => {
+      if (formatIndex < formats.length) {
+        const nextSrc = formats[formatIndex];
+        formatIndex++;
+
+        // Append cache buster to force a fresh image request and guarantee load/error event dispatch
+        const cb = `cb=${Date.now()}`;
+        const separator = nextSrc.includes('?') ? '&' : '?';
+        const finalSrc = nextSrc + separator + cb;
+
+        logoImg.src = finalSrc;
+        if (bgBlurImg) {
+          bgBlurImg.src = finalSrc;
+        }
+      } else {
+        // If no custom logo has been uploaded to the workspace yet, show the high-contrast golden butterfly fallback
+        logoImg.style.display = 'none';
+        if (bgBlurImg) {
+          bgBlurImg.style.display = 'none';
+        }
+        fallback.style.display = 'flex';
+      }
+    };
+
+    logoImg.addEventListener('error', tryNextLogo);
+    logoImg.addEventListener('load', handleLoadSuccess);
+
+    // If the image tag already succeeded in loading before this script ran, run the success handler immediately
+    if (logoImg.complete && logoImg.naturalWidth > 0) {
+      handleLoadSuccess();
+    } else {
+      tryNextLogo();
+    }
   }
 }
 

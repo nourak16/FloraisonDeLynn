@@ -64,6 +64,7 @@ export function initProducts() {
   const lightboxReset = document.getElementById('lightboxReset');
   const lightboxZoomIndicator = document.getElementById('lightboxZoomIndicator');
   const lightboxTip = document.getElementById('lightboxTip');
+  const lightboxContent = document.getElementById('lightboxContent');
 
   // --- Zoom / Pan states ---
   let galleryScale = 1;
@@ -1407,41 +1408,27 @@ export function initProducts() {
     // Reveal system for the products section & footer
     const productsSection = document.querySelector('.products-section');
     const footerElement = document.querySelector('.footer');
-    let hasAutoRevealed = false;
 
     function revealProductsSection(andScroll = true) {
       if (!productsSection) return;
-      const isFirstReveal = !productsSection.classList.contains('is-revealed');
-
-      if (isFirstReveal) {
+      
+      // Ensure the is-revealed class is present
+      if (!productsSection.classList.contains('is-revealed')) {
         productsSection.classList.add('is-revealed');
-        if (footerElement) {
-          footerElement.classList.add('is-revealed');
-        }
-        
-        // Refresh ScrollTrigger so that any lazy animations know correct heights
+      }
+      if (footerElement && !footerElement.classList.contains('is-revealed')) {
+        footerElement.classList.add('is-revealed');
+      }
+
+      if (andScroll) {
+        productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      // Safe refresh call for lazy ScrollTriggers if loaded
+      if (typeof ScrollTrigger !== 'undefined' && ScrollTrigger && ScrollTrigger.refresh) {
         setTimeout(() => {
           ScrollTrigger.refresh();
-        }, 500);
-      }
-      
-      if (andScroll) {
-        if (isFirstReveal) {
-          // Because productsSection transitions from max-height: 0 to content height,
-          // the scrollable document size expands dynamically. We repeatedly adjust the scroll
-          // position over the course of the first 600ms of the transition to ensure a continuous,
-          // uninterrupted smooth scroll directly to the top edge of the expanded section.
-          let count = 0;
-          const intervalId = setInterval(() => {
-            productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            count++;
-            if (count >= 6) {
-              clearInterval(intervalId);
-            }
-          }, 100);
-        } else {
-          productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        }, 300);
       }
     }
 
