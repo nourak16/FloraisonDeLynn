@@ -50,17 +50,47 @@
 
   <!-- Inline Fail-Safe Page Loader Fallback: Forces loading screen dismissal after 5 seconds -->
   <script>
-    window.handleProductImageError = function(img, originalSrc) {
-      if (!img) return;
-      if (img.dataset.failed) return; // Prevent infinite loop if already failed ultimate fallback
-      
-      if (!img.dataset.errorCount) {
-        img.dataset.errorCount = "1";
-      } else {
-        img.dataset.errorCount = (parseInt(img.dataset.errorCount) || 0) + 1;
+    window.getAbsoluteAssetUrl = function(relativePath) {
+      if (!relativePath) return '';
+      if (relativePath.indexOf('http://') === 0 || relativePath.indexOf('https://') === 0 || relativePath.indexOf('data:') === 0) {
+        return relativePath;
       }
       
-      var count = parseInt(img.dataset.errorCount) || 0;
+      var cleanPath = relativePath;
+      if (cleanPath.indexOf('./') === 0) {
+        cleanPath = cleanPath.substring(2);
+      } else if (cleanPath.indexOf('/') === 0) {
+        cleanPath = cleanPath.substring(1);
+      }
+      
+      var path = window.location.pathname;
+      var segments = path.split('/').filter(Boolean);
+      var baseDir = '/';
+      
+      if (window.location.hostname.indexOf('github.io') !== -1) {
+        if (segments.length > 0) {
+          baseDir = '/' + segments[0] + '/';
+        }
+      } else {
+        var lastSlash = path.lastIndexOf('/');
+        if (lastSlash !== -1) {
+          baseDir = path.substring(0, lastSlash + 1);
+        }
+      }
+      if (baseDir.charAt(baseDir.length - 1) !== '/') {
+        baseDir += '/';
+      }
+      
+      return window.location.origin + baseDir + cleanPath;
+    };
+
+    window.handleProductImageError = function(img, originalSrc) {
+      if (!img) return;
+      if (img.getAttribute('data-failed') === 'true') return; // Prevent infinite loop if already failed ultimate fallback
+      
+      var errorCount = parseInt(img.getAttribute('data-error-count')) || 0;
+      errorCount++;
+      img.setAttribute('data-error-count', errorCount.toString());
       
       var fileName = "";
       if (originalSrc) {
@@ -76,43 +106,24 @@
       
       if (!fileName || fileName === 'undefined') return;
 
-      var path = window.location.pathname;
-      var baseDir = '/';
-      var segments = path.split('/').filter(Boolean);
-      
-      if (window.location.hostname.indexOf('github.io') !== -1) {
-        if (segments.length > 0) {
-          baseDir = '/' + segments[0] + '/';
-        }
-      } else {
-        var lastSlash = path.lastIndexOf('/');
-        if (lastSlash !== -1) {
-          baseDir = path.substring(0, lastSlash + 1);
-        }
-      }
-      if (baseDir.charAt(baseDir.length - 1) !== '/') {
-        baseDir += '/';
-      }
-
       var cacheBuster = "?v=" + Date.now();
       
-      // Candidate paths to search for the image systematically
+      // Candidate paths to search for the image systematically (using absolute URLs)
       var candidates = [
-        baseDir + "images/" + fileName,
-        baseDir + "public/images/" + fileName,
-        "./images/" + fileName,
-        "./public/images/" + fileName
+        window.getAbsoluteAssetUrl("images/" + fileName),
+        window.getAbsoluteAssetUrl("public/images/" + fileName),
+        window.getAbsoluteAssetUrl(fileName)
       ];
       
-      if (count <= candidates.length) {
-        img.src = candidates[count - 1] + cacheBuster;
+      if (errorCount <= candidates.length) {
+        img.src = candidates[errorCount - 1] + cacheBuster;
         return;
       }
       
       // Ultimate fallback: mark as failed to avoid infinite loop
-      img.dataset.failed = "true";
+      img.setAttribute('data-failed', 'true');
       img.onerror = null;
-      img.src = baseDir + 'images/logo.webp' + cacheBuster;
+      img.src = window.getAbsoluteAssetUrl('images/logo.webp') + cacheBuster;
       img.style.opacity = '0.35';
       img.style.objectFit = 'contain';
       img.style.padding = '30px';

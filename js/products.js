@@ -85,8 +85,8 @@ export function initProducts() {
 
   function resetReusableImage(img) {
     if (!img) return;
-    delete img.dataset.failed;
-    delete img.dataset.errorCount;
+    img.removeAttribute('data-failed');
+    img.removeAttribute('data-error-count');
     img.style.opacity = '';
     img.style.padding = '16px';
     img.style.objectFit = 'contain';
@@ -155,11 +155,16 @@ export function initProducts() {
       const isBestSeller = ["Lynnies Bouquet", "Crystal Bloom", "Bloomelle", "Golden Memories", "Butterfly Kiss"].includes(p.name);
       const isBestSellerBadge = isBestSeller ? `<span class="products__best-seller-badge">Best Seller</span>` : '';
 
+      let cardImgUrl = p.image || '';
+      if (typeof window.getAbsoluteAssetUrl === 'function') {
+        cardImgUrl = window.getAbsoluteAssetUrl(cardImgUrl);
+      }
+
       return `
         <div class="products__card" data-category="${p.category}" data-id="${i}" id="product-card-${i}">
           <div class="products__card-image-wrapper is-loading">
             ${isBestSellerBadge}
-            <img data-src="${p.image}?v=1.0.1" src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org/2000%2Fsvg%27%20viewBox%3D%270%200%201%201%27%2F%3E" alt="${p.name}" class="products__card-image lazy-image" decoding="async" onerror="window.handleProductImageError(this, '${p.image}')">
+            <img data-src="${cardImgUrl}?v=1.0.1" src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org/2000%2Fsvg%27%20viewBox%3D%270%200%201%201%27%2F%3E" alt="${p.name}" class="products__card-image lazy-image" decoding="async" onerror="window.handleProductImageError(this, '${p.image}')">
           </div>
           <div class="products__card-info">
             <span class="products__card-category">${p.category}</span>
@@ -292,10 +297,15 @@ export function initProducts() {
           </div>
         ` : '';
 
+        let itemUrl = item.image || '';
+        if (typeof window.getAbsoluteAssetUrl === 'function') {
+          itemUrl = window.getAbsoluteAssetUrl(itemUrl);
+        }
+
         return `
           <div class="cart-item" id="cart-item-${listIndex}">
             <div class="cart-item__image">
-              <img src="${item.image}?v=1.0.1" alt="${item.name}" onerror="window.handleProductImageError(this, '${item.image}')">
+              <img src="${itemUrl}?v=1.0.1" alt="${item.name}" onerror="window.handleProductImageError(this, '${item.image}')">
             </div>
             <div class="cart-item__info">
               <div class="cart-item__header">
@@ -365,7 +375,11 @@ export function initProducts() {
     if (!currentProductGallery || currentProductGallery.length === 0) return;
     
     currentGalleryImageIndex = (currentGalleryImageIndex + step + currentProductGallery.length) % currentProductGallery.length;
-    const currentImgUrl = currentProductGallery[currentGalleryImageIndex] ? currentProductGallery[currentGalleryImageIndex] + "?v=1.0.1" : '';
+    let url = currentProductGallery[currentGalleryImageIndex] || '';
+    if (typeof window.getAbsoluteAssetUrl === 'function') {
+      url = window.getAbsoluteAssetUrl(url);
+    }
+    const currentImgUrl = url ? url + "?v=1.0.1" : '';
     if (modalImage) {
       resetReusableImage(modalImage);
       modalImage.src = currentImgUrl;
@@ -428,7 +442,11 @@ export function initProducts() {
       dot.onclick = (e) => {
         e.stopPropagation();
         currentGalleryImageIndex = idx;
-        const currentImgUrl = currentProductGallery[currentGalleryImageIndex] ? currentProductGallery[currentGalleryImageIndex] + "?v=1.0.1" : '';
+        let url = currentProductGallery[currentGalleryImageIndex] || '';
+        if (typeof window.getAbsoluteAssetUrl === 'function') {
+          url = window.getAbsoluteAssetUrl(url);
+        }
+        const currentImgUrl = url ? url + "?v=1.0.1" : '';
         if (modalImage) {
           resetReusableImage(modalImage);
           modalImage.src = currentImgUrl;
@@ -447,7 +465,11 @@ export function initProducts() {
     currentGalleryImageIndex = 0;
     if (modalImage) {
       resetReusableImage(modalImage);
-      modalImage.src = p.image ? p.image + "?v=1.0.1" : '';
+      let url = p.image || '';
+      if (typeof window.getAbsoluteAssetUrl === 'function') {
+        url = window.getAbsoluteAssetUrl(url);
+      }
+      modalImage.src = url ? url + "?v=1.0.1" : '';
     }
     resetGalleryZoom();
     updateGalleryControls();

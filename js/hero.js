@@ -4,32 +4,27 @@ export function initHero() {
   const fallback = document.getElementById('heroBrandLogoFallback');
 
   if (logoImg && fallback) {
-    const path = window.location.pathname;
-    const segments = path.split('/').filter(Boolean);
-    let repoName = '';
-    
-    if (window.location.hostname.includes('github.io')) {
-      if (segments.length > 0) {
-        repoName = segments[0];
+    const getAbsolute = (rel) => {
+      if (typeof window.getAbsoluteAssetUrl === 'function') {
+        return window.getAbsoluteAssetUrl(rel);
       }
-    }
-    const baseAssetUrl = window.location.origin + '/' + (repoName ? repoName + '/' : '');
+      return './' + rel;
+    };
 
     // Elegant system to automatically detect and render their logo image whichever extension they upload
     const formats = [
-      baseAssetUrl + 'images/logo.webp?v=transparent_logo_v2',
-      './images/logo.webp?v=transparent_logo_v2',
-      baseAssetUrl + 'images/logo.png?v=transparent_logo_v2',
-      './images/logo.png?v=transparent_logo_v2',
-      baseAssetUrl + 'logo.webp',
-      baseAssetUrl + 'logo.png',
-      baseAssetUrl + 'logo.jpg',
-      baseAssetUrl + 'logo.jpeg',
-      baseAssetUrl + 'logo.svg',
-      baseAssetUrl + 'logo.gif',
-      './images/logo.jpg',
-      './images/logo.png',
-      './images/logo.gif'
+      getAbsolute('images/logo.webp') + '?v=transparent_logo_v2',
+      getAbsolute('public/images/logo.webp') + '?v=transparent_logo_v2',
+      getAbsolute('logo.webp'),
+      getAbsolute('images/logo.png') + '?v=transparent_logo_v2',
+      getAbsolute('public/images/logo.png') + '?v=transparent_logo_v2',
+      getAbsolute('logo.png'),
+      getAbsolute('images/logo.jpg'),
+      getAbsolute('public/images/logo.jpg'),
+      getAbsolute('logo.jpg'),
+      getAbsolute('images/logo.svg'),
+      getAbsolute('public/images/logo.svg'),
+      getAbsolute('logo.svg')
     ];
     let formatIndex = 0;
 
