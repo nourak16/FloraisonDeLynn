@@ -1233,7 +1233,7 @@ export function initProducts() {
       if (categoryMatches && textMatches) {
         if (card.style.display !== 'flex') {
           card.style.display = 'flex';
-          if (shouldAnimate) {
+          if (shouldAnimate && gsap) {
             gsap.fromTo(card, { opacity: 0, scale: 0.93 }, { opacity: 1, scale: 1, duration: 0.35 });
           } else {
             card.style.opacity = '1';
@@ -1306,21 +1306,28 @@ export function initProducts() {
   function setupCardAnimations() {
     const cards = document.querySelectorAll('.products__card');
 
-    ScrollTrigger.batch(cards, {
-      start: 'top 95%',
-      onEnter: batch => gsap.fromTo(batch, 
-        { opacity: 0, y: 35 },
-        { 
-          opacity: 1, 
-          y: 0, 
-          duration: 0.75, 
-          stagger: 0.08, 
-          ease: 'power3.out',
-          overwrite: true
-        }
-      ),
-      once: true
-    });
+    if (ScrollTrigger && gsap) {
+      ScrollTrigger.batch(cards, {
+        start: 'top 95%',
+        onEnter: batch => gsap.fromTo(batch, 
+          { opacity: 0, y: 35 },
+          { 
+            opacity: 1, 
+            y: 0, 
+            duration: 0.75, 
+            stagger: 0.08, 
+            ease: 'power3.out',
+            overwrite: true
+          }
+        ),
+        once: true
+      });
+    } else {
+      cards.forEach(card => {
+        card.style.opacity = '1';
+        card.style.transform = 'none';
+      });
+    }
 
     cards.forEach(card => {
       const image = card.querySelector('.products__card-image');
@@ -1352,14 +1359,18 @@ export function initProducts() {
           const rotateX = (y - centerY) / 38;
           const rotateY = (centerX - x) / 38;
 
-          gsap.to(card, { rotateX, rotateY, duration: 0.8, ease: 'power3.out' });
-          if (image) gsap.to(image, { scale: 1.05, duration: 0.8, ease: 'power2.out' });
+          if (gsap) {
+            gsap.to(card, { rotateX, rotateY, duration: 0.8, ease: 'power3.out' });
+            if (image) gsap.to(image, { scale: 1.05, duration: 0.8, ease: 'power2.out' });
+          }
         }, { passive: true });
 
         card.addEventListener('mouseleave', () => {
           rect = null;
-          gsap.to(card, { rotateX: 0, rotateY: 0, duration: 1.1, ease: 'elastic.out(1, 0.65)' });
-          if (image) gsap.to(image, { scale: 1, duration: 1.1, ease: 'power2.inOut' });
+          if (gsap) {
+            gsap.to(card, { rotateX: 0, rotateY: 0, duration: 1.1, ease: 'elastic.out(1, 0.65)' });
+            if (image) gsap.to(image, { scale: 1, duration: 1.1, ease: 'power2.inOut' });
+          }
         });
       }
     });
