@@ -5,35 +5,28 @@ export function initHero() {
 
   if (logoImg && fallback) {
     const path = window.location.pathname;
-    let baseDir = '/';
     const segments = path.split('/').filter(Boolean);
+    let repoName = '';
     
     if (window.location.hostname.includes('github.io')) {
       if (segments.length > 0) {
-        baseDir = '/' + segments[0] + '/';
-      }
-    } else {
-      const lastSlash = path.lastIndexOf('/');
-      if (lastSlash !== -1) {
-        baseDir = path.substring(0, lastSlash + 1);
+        repoName = segments[0];
       }
     }
-    if (!baseDir.endsWith('/')) {
-      baseDir += '/';
-    }
+    const baseAssetUrl = window.location.origin + '/' + (repoName ? repoName + '/' : '');
 
     // Elegant system to automatically detect and render their logo image whichever extension they upload
     const formats = [
-      baseDir + 'images/logo.webp?v=transparent_logo_v2',
+      baseAssetUrl + 'images/logo.webp?v=transparent_logo_v2',
       './images/logo.webp?v=transparent_logo_v2',
-      baseDir + 'images/logo.png?v=transparent_logo_v2',
+      baseAssetUrl + 'images/logo.png?v=transparent_logo_v2',
       './images/logo.png?v=transparent_logo_v2',
-      baseDir + 'logo.webp',
-      baseDir + 'logo.png',
-      baseDir + 'logo.jpg',
-      baseDir + 'logo.jpeg',
-      baseDir + 'logo.svg',
-      baseDir + 'logo.gif',
+      baseAssetUrl + 'logo.webp',
+      baseAssetUrl + 'logo.png',
+      baseAssetUrl + 'logo.jpg',
+      baseAssetUrl + 'logo.jpeg',
+      baseAssetUrl + 'logo.svg',
+      baseAssetUrl + 'logo.gif',
       './images/logo.jpg',
       './images/logo.png',
       './images/logo.gif'
@@ -94,11 +87,17 @@ export function initHero() {
     logoImg.addEventListener('error', tryNextLogo);
     logoImg.addEventListener('load', handleLoadSuccess);
 
-    // If the image tag already succeeded in loading before this script ran, run the success handler immediately
-    if (logoImg.complete && logoImg.naturalWidth > 0) {
-      handleLoadSuccess();
+    // If the image tag already succeeded in loading or failed before this script ran:
+    if (logoImg.complete) {
+      if (logoImg.naturalWidth > 0) {
+        handleLoadSuccess();
+      } else {
+        tryNextLogo();
+      }
     } else {
-      tryNextLogo();
+      // It is currently loading. Let the browser finish loading it.
+      // If it fails, our error listener will call tryNextLogo().
+      // If it succeeds, our load listener will call handleLoadSuccess().
     }
   }
 }

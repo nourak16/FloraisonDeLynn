@@ -83,6 +83,20 @@ export function initProducts() {
   let lightboxStartX = 0;
   let lightboxStartY = 0;
 
+  function resetReusableImage(img) {
+    if (!img) return;
+    delete img.dataset.failed;
+    delete img.dataset.errorCount;
+    img.style.opacity = '';
+    img.style.padding = '16px';
+    img.style.objectFit = 'contain';
+    img.onerror = function() {
+      if (typeof window.handleProductImageError === 'function') {
+        window.handleProductImageError(this, this.src);
+      }
+    };
+  }
+
   function init() {
     if (gridContainer) {
       renderFilters();
@@ -353,6 +367,7 @@ export function initProducts() {
     currentGalleryImageIndex = (currentGalleryImageIndex + step + currentProductGallery.length) % currentProductGallery.length;
     const currentImgUrl = currentProductGallery[currentGalleryImageIndex] ? currentProductGallery[currentGalleryImageIndex] + "?v=1.0.1" : '';
     if (modalImage) {
+      resetReusableImage(modalImage);
       modalImage.src = currentImgUrl;
     }
     resetGalleryZoom();
@@ -414,7 +429,10 @@ export function initProducts() {
         e.stopPropagation();
         currentGalleryImageIndex = idx;
         const currentImgUrl = currentProductGallery[currentGalleryImageIndex] ? currentProductGallery[currentGalleryImageIndex] + "?v=1.0.1" : '';
-        if (modalImage) modalImage.src = currentImgUrl;
+        if (modalImage) {
+          resetReusableImage(modalImage);
+          modalImage.src = currentImgUrl;
+        }
         resetGalleryZoom();
         updateGalleryControls();
       };
@@ -427,7 +445,10 @@ export function initProducts() {
     const p = products[index];
     currentProductGallery = p.gallery || [p.image];
     currentGalleryImageIndex = 0;
-    if (modalImage) modalImage.src = p.image ? p.image + "?v=1.0.1" : '';
+    if (modalImage) {
+      resetReusableImage(modalImage);
+      modalImage.src = p.image ? p.image + "?v=1.0.1" : '';
+    }
     resetGalleryZoom();
     updateGalleryControls();
     if (modalTitle) modalTitle.textContent = p.name;
