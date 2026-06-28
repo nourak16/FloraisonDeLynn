@@ -48,6 +48,21 @@
     </div>
   </div>
 
+  <!-- Inline Fail-Safe Page Loader Fallback: Forces loading screen dismissal after 5 seconds -->
+  <script>
+    (function() {
+      setTimeout(function() {
+        var loader = document.getElementById('loader');
+        if (loader && !loader.classList.contains('is-hidden')) {
+          loader.classList.add('is-hidden');
+          setTimeout(function() {
+            loader.style.display = 'none';
+          }, 800);
+        }
+      }, 5000);
+    })();
+  </script>
+
   <!-- Persistent Luxurious Header Navbar -->
   <header class="header">
     <button class="mobile-toggle" id="mobileToggle" aria-label="Open Navigation Menu">

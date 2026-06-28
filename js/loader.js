@@ -3,6 +3,7 @@ export function initLoader() {
   if (!loader) return;
 
   const hideLoader = () => {
+    if (loader.classList.contains('is-hidden')) return;
     loader.classList.add('is-hidden');
     setTimeout(() => {
       loader.style.display = 'none';
@@ -16,6 +17,6 @@ export function initLoader() {
     window.addEventListener('load', hideLoader);
   }
 
-  // Backup fallback in case network elements load sluggishly
-  setTimeout(hideLoader, 3500);
+  // Backup fallback in case network elements or assets load sluggishly or fail
+  setTimeout(hideLoader, 5000);
 }
