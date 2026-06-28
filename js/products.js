@@ -700,8 +700,7 @@ export function initProducts() {
       const whatsappBtn = document.getElementById('modalWhatsappBtn');
       if (whatsappBtn) {
         let selectedSummary = reviewBox.textContent.replace(/\s+/g, ' ').replace('Selected Color:', 'Color:').replace('Selected:', '').trim();
-        const absoluteImageUrl = `${window.location.origin}/${p.image}`;
-        const textMessage = `Hello FLORAISON DE LYNN! I would like to inquire about "${p.name}" (${p.category}) from your website.\n\nProduct Image:\n${absoluteImageUrl}\n\nChosen Details:\n• ${selectedSummary}\n\nCould you please provide more info? Thank you!`;
+        const textMessage = `Hello FLORAISON DE LYNN! I would like to inquire about "${p.name}" (${p.category}) from your website.\n\nChosen Details:\n• ${selectedSummary}\n\nCould you please provide more info? Thank you!`;
         const whatsappNumber = '96181769307';
         whatsappBtn.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(textMessage)}`;
       }
