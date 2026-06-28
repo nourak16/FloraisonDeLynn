@@ -1,8 +1,12 @@
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { products, filters } from './productData.js';
 
-gsap.registerPlugin(ScrollTrigger);
+// Access gsap and ScrollTrigger globally (loaded via CDN for full zero-dependency resilience)
+const gsap = window.gsap || (typeof globalThis !== 'undefined' ? globalThis.gsap : null);
+const ScrollTrigger = window.ScrollTrigger || (typeof globalThis !== 'undefined' ? globalThis.ScrollTrigger : null);
+
+if (gsap && ScrollTrigger) {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export function initProducts() {
   // --- Cart State ---
