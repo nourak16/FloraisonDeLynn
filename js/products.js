@@ -145,7 +145,7 @@ export function initProducts() {
         <div class="products__card" data-category="${p.category}" data-id="${i}" id="product-card-${i}">
           <div class="products__card-image-wrapper">
             ${isBestSellerBadge}
-            <img src="${p.image}" alt="${p.name}" class="products__card-image" loading="lazy" decoding="async" onerror="window.handleProductImageError(this, '${p.image}')">
+            <img src="${p.image}?v=1.0.1" alt="${p.name}" class="products__card-image" loading="lazy" decoding="async" onerror="window.handleProductImageError(this, '${p.image}')">
           </div>
           <div class="products__card-info">
             <span class="products__card-category">${p.category}</span>
@@ -226,7 +226,7 @@ export function initProducts() {
         return `
           <div class="cart-item" id="cart-item-${listIndex}">
             <div class="cart-item__image">
-              <img src="${item.image}" alt="${item.name}" onerror="window.handleProductImageError(this, '${item.image}')">
+              <img src="${item.image}?v=1.0.1" alt="${item.name}" onerror="window.handleProductImageError(this, '${item.image}')">
             </div>
             <div class="cart-item__info">
               <div class="cart-item__header">
@@ -296,7 +296,7 @@ export function initProducts() {
     if (!currentProductGallery || currentProductGallery.length === 0) return;
     
     currentGalleryImageIndex = (currentGalleryImageIndex + step + currentProductGallery.length) % currentProductGallery.length;
-    const currentImgUrl = currentProductGallery[currentGalleryImageIndex];
+    const currentImgUrl = currentProductGallery[currentGalleryImageIndex] ? currentProductGallery[currentGalleryImageIndex] + "?v=1.0.1" : '';
     if (modalImage) {
       modalImage.src = currentImgUrl;
     }
@@ -358,7 +358,7 @@ export function initProducts() {
       dot.onclick = (e) => {
         e.stopPropagation();
         currentGalleryImageIndex = idx;
-        const currentImgUrl = currentProductGallery[currentGalleryImageIndex];
+        const currentImgUrl = currentProductGallery[currentGalleryImageIndex] ? currentProductGallery[currentGalleryImageIndex] + "?v=1.0.1" : '';
         if (modalImage) modalImage.src = currentImgUrl;
         resetGalleryZoom();
         updateGalleryControls();
@@ -372,7 +372,7 @@ export function initProducts() {
     const p = products[index];
     currentProductGallery = p.gallery || [p.image];
     currentGalleryImageIndex = 0;
-    if (modalImage) modalImage.src = p.image;
+    if (modalImage) modalImage.src = p.image ? p.image + "?v=1.0.1" : '';
     resetGalleryZoom();
     updateGalleryControls();
     if (modalTitle) modalTitle.textContent = p.name;

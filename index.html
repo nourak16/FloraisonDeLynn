@@ -52,6 +52,8 @@
   <script>
     window.handleProductImageError = function(img, originalSrc) {
       if (!img) return;
+      if (img.dataset.failed) return; // Prevent infinite loop if already failed ultimate fallback
+      
       if (!img.dataset.errorCount) {
         img.dataset.errorCount = "1";
       } else {
@@ -74,44 +76,25 @@
       
       if (!fileName || fileName === 'undefined') return;
 
-      var path = window.location.pathname;
-      var lastSlash = path.lastIndexOf('/');
-      var baseDir = lastSlash !== -1 ? path.substring(0, lastSlash + 1) : '/';
+      var cacheBuster = "?v=" + Date.now();
       
       if (count === 1) {
-        // Try public/images/ filename
-        img.src = baseDir + "public/images/" + fileName;
+        // Try absolute root-relative images/ path with cache buster
+        img.src = "/images/" + fileName + cacheBuster;
         return;
       } else if (count === 2) {
-        // Try images/ filename
-        img.src = baseDir + "images/" + fileName;
-        return;
-      } else if (count === 3) {
-        // Try relative ./images/ filename
-        img.src = "./images/" + fileName;
-        return;
-      } else if (count === 4) {
-        // Try relative ./public/images/ filename
-        img.src = "./public/images/" + fileName;
+        // Try relative ./images/ path with cache buster
+        img.src = "./images/" + fileName + cacheBuster;
         return;
       }
       
-      // Ultimate fallback to logo or hidden
+      // Ultimate fallback: mark as failed to avoid infinite loop
+      img.dataset.failed = "true";
       img.onerror = null;
-      img.src = './images/logo.webp';
-      var logoErrCount = 0;
-      img.onerror = function() {
-        if (logoErrCount === 0) {
-          logoErrCount++;
-          img.src = './public/images/logo.webp';
-        } else {
-          img.onerror = null;
-          img.style.display = 'none';
-        }
-      };
-      img.style.opacity = '0.45';
+      img.src = './images/logo.webp' + cacheBuster;
+      img.style.opacity = '0.35';
       img.style.objectFit = 'contain';
-      img.style.padding = '40px';
+      img.style.padding = '30px';
     };
 
     (function() {
