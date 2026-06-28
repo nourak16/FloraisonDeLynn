@@ -5,8 +5,22 @@ export function initHero() {
 
   if (logoImg && fallback) {
     const path = window.location.pathname;
-    const lastSlash = path.lastIndexOf('/');
-    const baseDir = lastSlash !== -1 ? path.substring(0, lastSlash + 1) : '/';
+    let baseDir = '/';
+    const segments = path.split('/').filter(Boolean);
+    
+    if (window.location.hostname.includes('github.io')) {
+      if (segments.length > 0) {
+        baseDir = '/' + segments[0] + '/';
+      }
+    } else {
+      const lastSlash = path.lastIndexOf('/');
+      if (lastSlash !== -1) {
+        baseDir = path.substring(0, lastSlash + 1);
+      }
+    }
+    if (!baseDir.endsWith('/')) {
+      baseDir += '/';
+    }
 
     // Elegant system to automatically detect and render their logo image whichever extension they upload
     const formats = [
