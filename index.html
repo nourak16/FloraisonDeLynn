@@ -413,7 +413,7 @@
       <!-- Split column layouts: Product media -->
       <div class="product-modal__gallery" id="galleryContainer" style="overflow: hidden; position: relative; background: var(--color-bg); min-height: 350px; display: flex; align-items: center; justify-content: center; cursor: grab;">
         <div class="gallery-zoom-wrapper" id="galleryZoomWrapper" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; transition: transform 0.15s ease-out; transform-origin: center center; user-select: none;">
-          <img id="modalImage" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Selected product" style="pointer-events: none; max-width: 100%; max-height: 100%; object-fit: contain; padding: 16px;" onerror="window.handleProductImageError(this, this.src)">
+          <img id="modalImage" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Selected product" style="pointer-events: none; max-width: 100%; max-height: 100%; object-fit: contain; padding: 16px;" loading="lazy" decoding="async" onerror="window.handleProductImageError(this, this.src)">
         </div>
         
         <!-- Floating Fullscreen Button - Bottom Right Minimal -->
@@ -515,7 +515,7 @@
       <!-- Lightbox Main Content (Zoom & Pan image) -->
       <div class="lightbox__content" id="lightboxContent" style="flex: 1; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: grab;">
         <div class="lightbox__img-wrapper" id="lightboxZoomWrapper" style="display: flex; align-items: center; justify-content: center; transition: transform 0.15s ease-out; transform-origin: center center; user-select: none;">
-          <img id="lightboxImage" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Zoomed view" style="max-width: 90vw; max-height: 80vh; object-fit: contain; pointer-events: none; border-radius: 8px;">
+          <img id="lightboxImage" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Zoomed view" style="max-width: 90vw; max-height: 80vh; object-fit: contain; pointer-events: none; border-radius: 8px;" loading="lazy" decoding="async">
         </div>
       </div>
 

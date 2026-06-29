@@ -164,7 +164,7 @@ export function initProducts() {
         <div class="products__card" data-category="${p.category}" data-id="${i}" id="product-card-${i}">
            <div class="products__card-image-wrapper is-loading">
              ${isBestSellerBadge}
-             <img data-src="${cardImgUrl}?v=1.0.1" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="${p.name}" class="products__card-image lazy-image" decoding="async" onerror="window.handleProductImageError(this, '${p.image}')">
+             <img data-src="${cardImgUrl}?v=1.0.1" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="${p.name}" class="products__card-image lazy-image" loading="lazy" decoding="async" onerror="window.handleProductImageError(this, '${p.image}')">
            </div>
           <div class="products__card-info">
             <span class="products__card-category">${p.category}</span>
@@ -305,7 +305,7 @@ export function initProducts() {
         return `
           <div class="cart-item" id="cart-item-${listIndex}">
             <div class="cart-item__image">
-              <img src="${itemUrl}?v=1.0.1" alt="${item.name}" onerror="window.handleProductImageError(this, '${item.image}')">
+              <img src="${itemUrl}?v=1.0.1" alt="${item.name}" loading="lazy" decoding="async" onerror="window.handleProductImageError(this, '${item.image}')">
             </div>
             <div class="cart-item__info">
               <div class="cart-item__header">
