@@ -162,10 +162,10 @@ export function initProducts() {
 
       return `
         <div class="products__card" data-category="${p.category}" data-id="${i}" id="product-card-${i}">
-          <div class="products__card-image-wrapper is-loading">
-            ${isBestSellerBadge}
-            <img data-src="${cardImgUrl}?v=1.0.1" src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org/2000%2Fsvg%27%20viewBox%3D%270%200%201%201%27%2F%3E" alt="${p.name}" class="products__card-image lazy-image" decoding="async" onerror="window.handleProductImageError(this, '${p.image}')">
-          </div>
+           <div class="products__card-image-wrapper is-loading">
+             ${isBestSellerBadge}
+             <img data-src="${cardImgUrl}?v=1.0.1" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="${p.name}" class="products__card-image lazy-image" decoding="async" onerror="window.handleProductImageError(this, '${p.image}')">
+           </div>
           <div class="products__card-info">
             <span class="products__card-category">${p.category}</span>
             <h4 class="products__card-name">${p.name}</h4>
