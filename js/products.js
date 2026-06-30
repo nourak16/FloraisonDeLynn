@@ -193,24 +193,31 @@ export function initProducts() {
             if (image.dataset.src) {
               const wrapper = image.closest('.products__card-image-wrapper');
               
-              // Define a memory Image to pre-load and guarantee a seamless transition
-              const tempImg = new Image();
-              tempImg.onload = () => {
-                image.src = image.dataset.src;
-                image.classList.add('lazy-image-loaded');
-                if (wrapper) {
-                  wrapper.classList.remove('is-loading');
-                }
+              // Direct onload handler on the image element itself guarantees the browser
+              // is fully ready to display the image assets before we trigger the CSS blur-up transitions
+              image.onload = () => {
+                requestAnimationFrame(() => {
+                  requestAnimationFrame(() => {
+                    image.classList.add('lazy-image-loaded');
+                    if (wrapper) {
+                      wrapper.classList.remove('is-loading');
+                    }
+                  });
+                });
               };
-              tempImg.onerror = () => {
-                // If pre-loading fails, assign the source to let handleProductImageError trigger
-                image.src = image.dataset.src;
-                image.classList.add('lazy-image-loaded');
-                if (wrapper) {
-                  wrapper.classList.remove('is-loading');
-                }
+              
+              image.onerror = () => {
+                requestAnimationFrame(() => {
+                  requestAnimationFrame(() => {
+                    image.classList.add('lazy-image-loaded');
+                    if (wrapper) {
+                      wrapper.classList.remove('is-loading');
+                    }
+                  });
+                });
               };
-              tempImg.src = image.dataset.src;
+              
+              image.src = image.dataset.src;
             }
             observer.unobserve(image);
           }
@@ -227,10 +234,12 @@ export function initProducts() {
       // Robust fallback for older environments
       lazyImages.forEach(image => {
         if (image.dataset.src) {
+          image.onload = () => {
+            image.classList.add('lazy-image-loaded');
+            const wrapper = image.closest('.products__card-image-wrapper');
+            if (wrapper) wrapper.classList.remove('is-loading');
+          };
           image.src = image.dataset.src;
-          image.classList.add('lazy-image-loaded');
-          const wrapper = image.closest('.products__card-image-wrapper');
-          if (wrapper) wrapper.classList.remove('is-loading');
         }
       });
     }
