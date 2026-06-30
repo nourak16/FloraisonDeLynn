@@ -78,6 +78,18 @@
         baseDir += '/';
       }
       
+      // If we are on GitHub Pages or any non-Vite raw environment where the build output isn't served,
+      // the images reside under "public/images/...". We prepend "public/" so they load correctly on the first attempt.
+      var isViteEnv = window.location.hostname.indexOf('localhost') !== -1 || 
+                      window.location.hostname.indexOf('127.0.0.1') !== -1 || 
+                      window.location.hostname.indexOf('run.app') !== -1;
+      
+      if (!isViteEnv) {
+        if (cleanPath.indexOf('images/') === 0 && cleanPath.indexOf('public/') !== 0) {
+          cleanPath = 'public/' + cleanPath;
+        }
+      }
+      
       return window.location.origin + baseDir + cleanPath;
     };
 
