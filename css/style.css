@@ -3040,20 +3040,33 @@ body.is-mobile-forced .header-actions {
   }
 }
 
-/* --- High-Performance Image Lazy Loading Transitions --- */
+/* --- High-Performance Image Lazy Loading Transitions & Cinematic Blur-Up --- */
 .products__card-image.lazy-image {
   opacity: 0;
-  visibility: hidden;
   filter: blur(12px);
+  -webkit-filter: blur(12px);
   transform: scale(0.96);
-  transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  will-change: opacity, filter, -webkit-filter, transform;
 }
 
 .products__card-image.lazy-image-loaded {
-  opacity: 1 !important;
-  visibility: visible !important;
-  filter: blur(0) !important;
-  transform: scale(1) !important;
+  animation: cinematicBlurUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
+  will-change: auto;
+}
+
+@keyframes cinematicBlurUp {
+  0% {
+    opacity: 0;
+    filter: blur(12px);
+    -webkit-filter: blur(12px);
+    transform: scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    -webkit-filter: blur(0);
+    transform: scale(1);
+  }
 }
 
 /* Elegant shimmering effect for the parent wrapper when loading */
