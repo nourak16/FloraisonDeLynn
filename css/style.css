@@ -3043,21 +3043,18 @@ body.is-mobile-forced .header-actions {
 /* --- High-Performance Image Lazy Loading Transitions & Cinematic Blur-Up --- */
 .products__card-image.lazy-image {
   opacity: 0;
-  visibility: hidden;
   filter: blur(12px);
   -webkit-filter: blur(12px);
   transform: scale(0.96);
   transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
               filter 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
               -webkit-filter 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              visibility 0s !important;
-  will-change: opacity, filter, -webkit-filter, transform, visibility;
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  will-change: opacity, filter, -webkit-filter, transform;
 }
 
 .products__card-image.lazy-image-loaded {
   opacity: 1 !important;
-  visibility: visible !important;
   filter: blur(0) !important;
   -webkit-filter: blur(0) !important;
   transform: scale(1) !important;
