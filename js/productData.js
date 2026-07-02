@@ -2,10 +2,10 @@ export const filters = ["Bouquets", "Gift Boxes", "Personalized Gifts"];
 
 export const products = [
   {
-    name: "Lynnies Bouquet",
+    name: "The lynnies bouquet",
     image: "./images/Lynnies_Bouquet.webp",
     gallery: ["./images/Lynnies_Bouquet.webp", "./images/Queens_garden.webp"],
-    description: "An incredibly beautiful bouquet, carefully handcrafted to elevate your special celebration. Available in elegant display sizes to make hearts flutter.",
+    description: "A signature butterfly bouquet illuminated with delicate fairy lights, creating a magical and unforgettable display.\n\nAvailable in different sizes and colors, each bouquet is carefully handcrafted and customized to suit any occasion, from birthdays and anniversaries to special surprises and celebrations.",
     category: "Bouquets",
     sizes: [
       { name: "Small" },
@@ -123,7 +123,7 @@ export const products = [
   },
   {
     name: "Bloom & Bliss",
-    image: "./images/Bloomelle-1.webp",
+    image: "./images/Bloom_and_Bliss_.webp",
     description: "A charming combination of real fresh flowers and sweet treats, designed to make every occasion extra special.\n\nCrafted with premium real flowers.",
     category: "Gift Boxes"
   },
