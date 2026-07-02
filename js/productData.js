@@ -123,7 +123,7 @@ export const products = [
   },
   {
     name: "Bloom & Bliss",
-    image: "./images/Bloom_and_Bliss_.webp",
+    image: "./images/Bloom_&_Bliss.webp",
     description: "A charming combination of real fresh flowers and sweet treats, designed to make every occasion extra special.\n\nCrafted with premium real flowers.",
     category: "Gift Boxes"
   },

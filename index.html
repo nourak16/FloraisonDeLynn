@@ -124,6 +124,24 @@
         window.getAbsoluteAssetUrl(fileName)
       ];
       
+      // Add smart fallbacks for special characters and naming changes (e.g., Bloom & Bliss vs Bloom_and_Bliss_ vs Bloom_&_Bliss)
+      var lowerName = fileName.toLowerCase();
+      if (lowerName.indexOf('bloom') !== -1 && (lowerName.indexOf('bliss') !== -1 || lowerName.indexOf('and') !== -1 || lowerName.indexOf('&') !== -1)) {
+        var altNames = [
+          "Bloom_&_Bliss.webp",
+          "Bloom_and_Bliss_.webp",
+          "Bloom_and_Bliss.webp",
+          "Bloom_&_Bliss .webp",
+          "Bloom_&_Bliss_.webp"
+        ];
+        altNames.forEach(function(alt) {
+          if (alt.toLowerCase() !== lowerName) {
+            candidates.push(window.getAbsoluteAssetUrl("images/" + alt));
+            candidates.push(window.getAbsoluteAssetUrl("public/images/" + alt));
+          }
+        });
+      }
+      
       if (errorCount <= candidates.length) {
         img.src = candidates[errorCount - 1] + cacheBuster;
         return;
