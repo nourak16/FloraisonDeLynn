@@ -193,11 +193,7 @@ export function initProducts() {
             if (image.dataset.src) {
               const wrapper = image.closest('.products__card-image-wrapper');
               
-              // Define a memory Image to pre-load and guarantee a seamless transition
-              const tempImg = new Image();
-              tempImg.onload = () => {
-                image.src = image.dataset.src;
-                // Ensure class addition is synchronized with browser paint for maximum smoothness
+              image.onload = () => {
                 requestAnimationFrame(() => {
                   image.classList.add('lazy-image-loaded');
                   if (wrapper) {
@@ -205,17 +201,8 @@ export function initProducts() {
                   }
                 });
               };
-              tempImg.onerror = () => {
-                // If pre-loading fails, assign the source to let handleProductImageError recover it
-                image.src = image.dataset.src;
-                requestAnimationFrame(() => {
-                  image.classList.add('lazy-image-loaded');
-                  if (wrapper) {
-                    wrapper.classList.remove('is-loading');
-                  }
-                });
-              };
-              tempImg.src = image.dataset.src;
+              
+              image.src = image.dataset.src;
             }
             observer.unobserve(image);
           }
@@ -232,20 +219,12 @@ export function initProducts() {
       // Robust fallback for older environments
       lazyImages.forEach(image => {
         if (image.dataset.src) {
-          const tempImg = new Image();
-          tempImg.onload = () => {
-            image.src = image.dataset.src;
+          const wrapper = image.closest('.products__card-image-wrapper');
+          image.onload = () => {
             image.classList.add('lazy-image-loaded');
-            const wrapper = image.closest('.products__card-image-wrapper');
             if (wrapper) wrapper.classList.remove('is-loading');
           };
-          tempImg.onerror = () => {
-            image.src = image.dataset.src;
-            image.classList.add('lazy-image-loaded');
-            const wrapper = image.closest('.products__card-image-wrapper');
-            if (wrapper) wrapper.classList.remove('is-loading');
-          };
-          tempImg.src = image.dataset.src;
+          image.src = image.dataset.src;
         }
       });
     }
