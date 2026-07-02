@@ -87,6 +87,7 @@ export function initProducts() {
     if (!img) return;
     img.removeAttribute('data-failed');
     img.removeAttribute('data-error-count');
+    img.alt = '';
     img.style.opacity = '';
     img.style.padding = '16px';
     img.style.objectFit = 'contain';
