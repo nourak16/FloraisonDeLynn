@@ -123,8 +123,8 @@ export const products = [
   },
   {
     name: "Bloom & Bliss",
-    image: "./images/Bloom_&_Bliss.webp",
-    description: "A charming combination of real fresh flowers and sweet treats, designed to make every occasion extra special.\n\nCrafted with premium real flowers.",
+    image: "./images/Bloom_and_Bliss.webp",
+    description: "A charming combination of fresh flowers and sweet treats, designed to make every occasion extra special.\n\nAvailable in different flower colors and customizable with your preferred treats upon request.\n\nPerfect for gifting, celebrating, and creating unforgettable moments.",
     category: "Gift Boxes"
   },
   {
