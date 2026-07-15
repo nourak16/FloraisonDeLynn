@@ -2,6 +2,12 @@ export const filters = ["Bouquets", "Gift Boxes", "Personalized Gifts"];
 
 export const products = [
   {
+    name: "Sunset Wings",
+    image: "./images/Sunset_wings.webp",
+    description: "Bright sunflowers paired with vibrant orange roses and soft floral accents, creating a bouquet that radiates warmth, joy, and elegance.",
+    category: "Bouquets"
+  },
+  {
     name: "The lynnies bouquet",
     image: "./images/Lynnies_Bouquet.webp",
     gallery: ["./images/Lynnies_Bouquet.webp", "./images/Queens_garden.webp"],

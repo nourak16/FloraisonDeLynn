@@ -153,7 +153,7 @@ export function initProducts() {
         customOptionsHtml = `<span style="font-size: 11.5px; color: var(--color-primary); text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 4px;">Real Flowers • Custom Color Note</span>`;
       }
 
-      const isBestSeller = ["Lynnies Bouquet", "The lynnies bouquet", "Crystal Bloom", "Bloomelle", "Golden Memories", "Butterfly Kiss"].includes(p.name);
+      const isBestSeller = ["Sunset Wings", "Lynnies Bouquet", "The lynnies bouquet", "Crystal Bloom", "Bloomelle", "Golden Memories", "Butterfly Kiss"].includes(p.name);
       const isBestSellerBadge = isBestSeller ? `<span class="products__best-seller-badge">Best Seller</span>` : '';
 
       let cardImgUrl = p.image || '';
