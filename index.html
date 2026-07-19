@@ -117,46 +117,82 @@
 
       var cacheBuster = "?v=" + Date.now();
       
-      // Candidate paths to search for the image systematically (using absolute URLs)
-      var candidates = [
-        window.getAbsoluteAssetUrl("images/" + fileName),
-        window.getAbsoluteAssetUrl("public/images/" + fileName),
-        window.getAbsoluteAssetUrl(fileName)
-      ];
-
-      // Add smart fallbacks for space and underscore mismatch (e.g. "La vie en rouge" vs "La_vie_en_rouge")
-      var spaceAlt = fileName.replace(/_/g, ' ');
-      var underscoreAlt = fileName.replace(/\s+/g, '_');
-      var smartAlts = [];
-      if (spaceAlt !== fileName) smartAlts.push(spaceAlt);
-      if (underscoreAlt !== fileName) smartAlts.push(underscoreAlt);
-
-      smartAlts.forEach(function(alt) {
-        candidates.push(window.getAbsoluteAssetUrl("images/" + alt));
-        candidates.push(window.getAbsoluteAssetUrl("public/images/" + alt));
-        candidates.push(window.getAbsoluteAssetUrl(alt));
+      var extIdx = fileName.lastIndexOf('.');
+      var base = extIdx !== -1 ? fileName.substring(0, extIdx) : fileName;
+      var ext = extIdx !== -1 ? fileName.substring(extIdx).toLowerCase() : '.webp';
+      
+      // Normalize base: replace underscores/dashes with spaces, trim, remove consecutive spaces
+      var normalizedBase = base.replace(/[\s_\-]+/g, ' ').trim();
+      
+      // Build a unique set of base string variants
+      var bases = [];
+      bases.push(base); // 1. Original base
+      if (bases.indexOf(normalizedBase) === -1) bases.push(normalizedBase); // 2. Normalized space base
+      
+      var lowercaseBase = normalizedBase.toLowerCase();
+      if (bases.indexOf(lowercaseBase) === -1) bases.push(lowercaseBase); // 3. Lowercase base
+      
+      var uppercaseBase = normalizedBase.toUpperCase();
+      if (bases.indexOf(uppercaseBase) === -1) bases.push(uppercaseBase); // 4. Uppercase base
+      
+      // 5. Title Case (e.g., "La Vie En Rouge")
+      var titleCase = normalizedBase.replace(/\b\w/g, function(l) { return l.toUpperCase(); });
+      if (bases.indexOf(titleCase) === -1) bases.push(titleCase);
+      
+      // 6. Title Case but lowercase connectors (e.g., "La Vie en Rouge", "Bloom & Bliss")
+      var titleEn = titleCase
+        .replace(/\bEn\b/g, 'en')
+        .replace(/\bAnd\b/g, 'and')
+        .replace(/\bOf\b/g, 'of')
+        .replace(/\bDe\b/g, 'de')
+        .replace(/\bLa\b/g, 'la');
+      if (bases.indexOf(titleEn) === -1) bases.push(titleEn);
+      
+      // 7. Sentence case (e.g., "La vie en rouge")
+      var sentenceCase = normalizedBase.charAt(0).toUpperCase() + normalizedBase.slice(1).toLowerCase();
+      if (bases.indexOf(sentenceCase) === -1) bases.push(sentenceCase);
+      
+      // Handle ampersand alternatives
+      var tempBases = [].concat(bases);
+      tempBases.forEach(function(b) {
+        if (b.indexOf('&') !== -1) {
+          var replaced = b.replace(/&/g, 'and').replace(/\s+/g, ' ').trim();
+          if (bases.indexOf(replaced) === -1) bases.push(replaced);
+        }
+        if (b.toLowerCase().indexOf('and') !== -1) {
+          var replaced = b.replace(/and/gi, '&').replace(/\s+/g, ' ').trim();
+          if (bases.indexOf(replaced) === -1) bases.push(replaced);
+        }
       });
       
-      // Add smart fallbacks for special characters and naming changes (e.g., Bloom & Bliss vs Bloom_and_Bliss_ vs Bloom_&_Bliss)
-      var lowerName = fileName.toLowerCase();
-      if (lowerName.indexOf('bloom') !== -1 && (lowerName.indexOf('bliss') !== -1 || lowerName.indexOf('and') !== -1 || lowerName.indexOf('&') !== -1)) {
-        var altNames = [
-          "Bloom_&_Bliss.webp",
-          "Bloom_and_Bliss_.webp",
-          "Bloom_and_Bliss.webp",
-          "Bloom_&_Bliss .webp",
-          "Bloom_&_Bliss_.webp"
-        ];
-        altNames.forEach(function(alt) {
-          if (alt.toLowerCase() !== lowerName) {
-            candidates.push(window.getAbsoluteAssetUrl("images/" + alt));
-            candidates.push(window.getAbsoluteAssetUrl("public/images/" + alt));
-          }
-        });
-      }
+      // Convert all bases to combinations with spaces and underscores
+      var uniqueFiles = [];
+      bases.forEach(function(b) {
+        var withSpaces = b + ext;
+        var withUnderscores = b.replace(/\s+/g, '_') + ext;
+        
+        if (uniqueFiles.indexOf(withSpaces) === -1) uniqueFiles.push(withSpaces);
+        if (uniqueFiles.indexOf(withUnderscores) === -1) uniqueFiles.push(withUnderscores);
+      });
       
-      if (errorCount <= candidates.length) {
-        img.src = candidates[errorCount - 1] + cacheBuster;
+      // Translate filenames to absolute URLs candidates
+      var candidates = [];
+      uniqueFiles.forEach(function(f) {
+        candidates.push(window.getAbsoluteAssetUrl("images/" + f));
+        candidates.push(window.getAbsoluteAssetUrl("public/images/" + f));
+        candidates.push(window.getAbsoluteAssetUrl(f));
+      });
+      
+      // Unique candidates filter
+      var uniqueCandidates = [];
+      candidates.forEach(function(c) {
+        if (uniqueCandidates.indexOf(c) === -1) {
+          uniqueCandidates.push(c);
+        }
+      });
+      
+      if (errorCount <= uniqueCandidates.length) {
+        img.src = uniqueCandidates[errorCount - 1] + cacheBuster;
         return;
       }
       
