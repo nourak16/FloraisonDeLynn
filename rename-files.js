@@ -1,6 +1,22 @@
 import fs from 'fs';
 import path from 'path';
 
+// Sync CNAME from root to public/CNAME if root CNAME exists
+const rootCNAME = path.resolve('CNAME');
+const publicCNAME = path.resolve('public/CNAME');
+if (fs.existsSync(rootCNAME)) {
+  try {
+    const rootContent = fs.readFileSync(rootCNAME, 'utf8');
+    const publicContent = fs.existsSync(publicCNAME) ? fs.readFileSync(publicCNAME, 'utf8') : '';
+    if (rootContent !== publicContent) {
+      fs.copyFileSync(rootCNAME, publicCNAME);
+      console.log('Synchronized CNAME from root to public/CNAME');
+    }
+  } catch (err) {
+    console.error('Failed to sync CNAME:', err);
+  }
+}
+
 const imagesDir = path.resolve('public/images');
 
 if (fs.existsSync(imagesDir)) {

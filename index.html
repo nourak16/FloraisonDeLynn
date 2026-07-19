@@ -123,6 +123,19 @@
         window.getAbsoluteAssetUrl("public/images/" + fileName),
         window.getAbsoluteAssetUrl(fileName)
       ];
+
+      // Add smart fallbacks for space and underscore mismatch (e.g. "La vie en rouge" vs "La_vie_en_rouge")
+      var spaceAlt = fileName.replace(/_/g, ' ');
+      var underscoreAlt = fileName.replace(/\s+/g, '_');
+      var smartAlts = [];
+      if (spaceAlt !== fileName) smartAlts.push(spaceAlt);
+      if (underscoreAlt !== fileName) smartAlts.push(underscoreAlt);
+
+      smartAlts.forEach(function(alt) {
+        candidates.push(window.getAbsoluteAssetUrl("images/" + alt));
+        candidates.push(window.getAbsoluteAssetUrl("public/images/" + alt));
+        candidates.push(window.getAbsoluteAssetUrl(alt));
+      });
       
       // Add smart fallbacks for special characters and naming changes (e.g., Bloom & Bliss vs Bloom_and_Bliss_ vs Bloom_&_Bliss)
       var lowerName = fileName.toLowerCase();
