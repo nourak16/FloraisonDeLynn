@@ -19,15 +19,13 @@ if (fs.existsSync(imagesDir)) {
       const oldPath = path.join(imagesDir, file);
       const newPath = path.join(imagesDir, sanitized);
       
-      console.log(`Renaming: "${file}" -> "${sanitized}"`);
+      console.log(`Copying/Ensuring: "${file}" -> "${sanitized}"`);
       try {
-        if (fs.existsSync(newPath)) {
-          fs.unlinkSync(oldPath); // avoid collision if it already exists
-        } else {
-          fs.renameSync(oldPath, newPath);
+        if (!fs.existsSync(newPath)) {
+          fs.copyFileSync(oldPath, newPath);
         }
       } catch (err) {
-        console.error(`Failed to rename ${file}:`, err);
+        console.error(`Failed to copy ${file}:`, err);
       }
     }
   });
