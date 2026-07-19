@@ -8,6 +8,13 @@ export const products = [
     category: "Bouquets"
   },
   {
+    name: "La vie en rouge",
+    image: "./images/La_vie_en_rouge.webp",
+    gallery: ["./images/La_vie_en_rouge.webp", "./images/La_vie_en_rouge1.webp"],
+    description: "La Vie en Rouge is a signature Papillon Cover Box filled with premium satin roses, designed to leave a lasting impression with every reveal.",
+    category: "Gift Boxes"
+  },
+  {
     name: "The lynnies bouquet",
     image: "./images/Lynnies_Bouquet.webp",
     gallery: ["./images/Lynnies_Bouquet.webp", "./images/Queens_garden.webp"],
