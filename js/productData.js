@@ -9,8 +9,8 @@ export const products = [
   },
   {
     name: "La vie en rouge",
-    image: "./images/La_vie_en_rouge.webp",
-    gallery: ["./images/La_vie_en_rouge.webp", "./images/La_vie_en_rouge1.webp"],
+    image: "./images/La_Vie_En_Rouge.webp",
+    gallery: ["./images/La_Vie_En_Rouge.webp", "./images/La_Vie_En_Rouge1.webp"],
     description: "La Vie en Rouge is a signature Papillon Cover Box filled with premium satin roses, designed to leave a lasting impression with every reveal.",
     category: "Gift Boxes"
   },
@@ -136,7 +136,7 @@ export const products = [
   },
   {
     name: "Bloom & Bliss",
-    image: "./images/Bloom_and_Bliss.webp",
+    image: "./images/Bloom_&_Bliss_.webp",
     description: "A charming combination of fresh flowers and sweet treats, designed to make every occasion extra special.\n\nAvailable in different flower colors and customizable with your preferred treats upon request.\n\nPerfect for gifting, celebrating, and creating unforgettable moments.",
     category: "Gift Boxes"
   },
