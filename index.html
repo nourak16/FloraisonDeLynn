@@ -173,6 +173,17 @@
         
         if (uniqueFiles.indexOf(withSpaces) === -1) uniqueFiles.push(withSpaces);
         if (uniqueFiles.indexOf(withUnderscores) === -1) uniqueFiles.push(withUnderscores);
+        
+        // Tolerance for trailing spaces or trailing underscores (e.g. "Bloom_&_Bliss .webp" or "Bloom_&_Bliss_.webp")
+        var withTrailingSpace = b + " " + ext;
+        var withTrailingUnderscore = b + "_" + ext;
+        var underWithTrailingSpace = b.replace(/\s+/g, '_') + " " + ext;
+        var underWithTrailingUnderscore = b.replace(/\s+/g, '_') + "_" + ext;
+        
+        if (uniqueFiles.indexOf(withTrailingSpace) === -1) uniqueFiles.push(withTrailingSpace);
+        if (uniqueFiles.indexOf(withTrailingUnderscore) === -1) uniqueFiles.push(withTrailingUnderscore);
+        if (uniqueFiles.indexOf(underWithTrailingSpace) === -1) uniqueFiles.push(underWithTrailingSpace);
+        if (uniqueFiles.indexOf(underWithTrailingUnderscore) === -1) uniqueFiles.push(underWithTrailingUnderscore);
       });
       
       // Translate filenames to absolute URLs candidates
